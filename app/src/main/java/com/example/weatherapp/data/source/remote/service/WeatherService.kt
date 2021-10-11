@@ -1,0 +1,26 @@
+package com.example.weatherapp.data.source.remote.service
+
+import com.example.weatherapp.data.source.remote.model.WeatherReport
+import retrofit2.http.GET
+import retrofit2.http.Query
+
+interface WeatherService {
+    /**
+     * Get current weather of city
+     *
+     * @param q     String name of city
+//     * @param units String units of response
+//     * @param lang  String language of response
+     * @param appId String api key
+     * @return instance of [WeatherReport]
+     */
+//    @GET("weather")
+    @GET("data/2.5/")
+   suspend fun getCurrentWeather(
+        @Query("q") q: String?,
+//        @Query("units") units: String?,
+//        @Query("lang") lang: String?,
+        @Query("appid") appId: String?
+    ): WeatherReport
+
+}
