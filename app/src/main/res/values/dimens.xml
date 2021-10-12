@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="card_side_margin">12dp</dimen>
+    <dimen name="card_bottom_margin">26dp</dimen>
+    <dimen name="card_elevation">2dp</dimen>
+    <dimen name="card_corner_radius">12dp</dimen>
+
+    <dimen name="city_item_image_height">125dp</dimen>
+    <dimen name="landmark_corner_radius">12dp</dimen>
+    <dimen name="view_margin_start">10dp</dimen>
+    <dimen name="temperature_text_size">40sp</dimen>
+    <dimen name="weather_icon_width">30dp</dimen>
+    <dimen name="weather_icon_height">30dp</dimen>
+    <dimen name="card_margin_top">20dp</dimen>
+
+
+    <!-- Weather List Header margin -->
+    <dimen name="header_margin">24dp</dimen>
+
+</resources>

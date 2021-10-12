@@ -9,6 +9,6 @@ import com.example.weatherapp.data.source.local.entity.WeatherEntity
 @Database(entities = [WeatherEntity::class],version = 1)
 abstract class WeatherDatabase : RoomDatabase(){
 
-    abstract fun weatherDatabase () : WeatherDao
+    abstract fun weatherDao () : WeatherDao
 
 }

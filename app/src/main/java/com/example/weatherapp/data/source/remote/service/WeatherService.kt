@@ -1,6 +1,7 @@
 package com.example.weatherapp.data.source.remote.service
 
 import com.example.weatherapp.data.source.remote.model.WeatherReport
+import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -14,13 +15,13 @@ interface WeatherService {
      * @param appId String api key
      * @return instance of [WeatherReport]
      */
-//    @GET("weather")
-    @GET("data/2.5/")
+
+    @GET("api.openweathermap.org/data/2.5/weather")
    suspend fun getCurrentWeather(
         @Query("q") q: String?,
 //        @Query("units") units: String?,
 //        @Query("lang") lang: String?,
         @Query("appid") appId: String?
-    ): WeatherReport
+    ): Response<WeatherReport>
 
 }

@@ -1,4 +1,4 @@
-package com.example.weatherapp.ui
+package com.example.weatherapp.ui.model
 
 data class WeatherData(
     val country: String,

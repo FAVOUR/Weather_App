@@ -1,40 +1,52 @@
 package com.example.weatherapp.data.repository
 
-import com.example.weatherapp.data.mappers.DataSourceMappers.toDataBaseModel
-import com.example.weatherapp.data.mappers.DataSourceMappers.toUiModel
 import com.example.weatherapp.data.source.local.LocalDataSource
 import com.example.weatherapp.data.source.local.entity.WeatherEntity
 import com.example.weatherapp.data.source.remote.RemoteDataSource
+import com.example.weatherapp.data.source.remote.helper.ResponseFromServer
+import com.example.weatherapp.data.source.remote.helper.SafeApiCall
 import com.example.weatherapp.data.source.remote.model.WeatherReport
-import com.example.weatherapp.ui.WeatherData
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.asFlow
+import kotlinx.coroutines.flow.flatMapMerge
+import kotlinx.coroutines.flow.flow
+import javax.inject.Inject
 
-class DefaultWeatherRepository(
+
+class DefaultWeatherRepository @Inject constructor(
     private val remoteDataSource: RemoteDataSource,
     private val localDataSource: LocalDataSource
 ) : WeatherRepository {
 
-    override suspend fun getCurrentWeather(listOfCities:List<String>): Flow<WeatherEntity> {
-       return  fetchWeatherData(listOfCities)
-           .map {
-               it.toDataBaseModel()
-           }
+    override fun getCurrentWeather(): Flow<List<WeatherEntity>> {
 
+        return localDataSource.getWeatherReports()
     }
 
-    fun fetchWeatherData(listOfCities:List<String>):Flow<WeatherReport>{
-        return  listOfCities.asFlow()
+    @FlowPreview
+    override fun fetchWeatherData(listOfCities: List<String>): Flow<ResponseFromServer<WeatherReport>> {
+        return listOfCities.asFlow()
             .flatMapMerge {
-                flow{ emit(remoteDataSource.getCurrentDataResource(it)) }
+                flow {
+                    val request: SafeApiCall<WeatherReport> =
+                        SafeApiCall(networkRequest = {
+                            remoteDataSource.getCurrentDataResource(
+                                city = it
+                            )
+                        })
+
+                    emit(request.makeApiNetworkRequest())
+                }
             }
     }
 
     override fun clearWeatherData() {
-        localDataSource.getWeatherReports()
+        localDataSource.deleteAllWeatherReport()
     }
 
     override fun insertWeatherData(allWeatherResult: WeatherEntity) {
-
+        localDataSource.getWeatherReports()
     }
 
 

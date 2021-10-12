@@ -1,10 +1,8 @@
 package com.example.weatherapp.data.source.local.dao
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
 import com.example.weatherapp.data.source.local.entity.WeatherEntity
+import kotlinx.coroutines.flow.Flow
 
 
 @Dao
@@ -19,5 +17,9 @@ interface WeatherDao {
 
 
     @Query("SELECT * from weatherentity")
-    fun getAllWeatherData():List<WeatherEntity>
+    fun getAllWeatherData(): Flow<List<WeatherEntity>>
+
+
+    @Query("DELETE FROM weatherentity")
+    fun deleteAllWeatherData()
 }

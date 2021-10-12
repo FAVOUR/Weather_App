@@ -10,4 +10,6 @@ interface LocalDataSource {
     fun saveWeatherReports(allWeatherReports: List<WeatherEntity>)
 
     fun updateWeatherReports(allWeatherReports: List<WeatherEntity>)
+
+    fun deleteAllWeatherReport()
 }

@@ -2,25 +2,26 @@ package com.example.weatherapp.data.source.remote.helper
 
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.supervisorScope
+import retrofit2.Response
 import java.lang.Exception
 
 class SafeApiCall<T>(
-    private val networkRequest: suspend () -> T,
-    private val error: (suspend () -> T)? = null
+    private val networkRequest: suspend () -> Response<T>
+//    , private val error: (suspend () -> T)? = null
 ) {
 
 
-    suspend fun makeApiNetworkRequest() {
-        supervisorScope {
+    suspend fun makeApiNetworkRequest():ResponseFromServer<T> {
+        return supervisorScope {
 
-                networkRequest.invoke().safelyHandleResponse()
+                networkRequest().safelyHandleResponse()
         }
     }
 
-    private suspend fun T.safelyHandleResponse():T{
+    private fun Response<T>.safelyHandleResponse():ResponseFromServer<T>{
 
        return try {
-            this
+            this.categorizeResponse()
 
         }catch (throwable: Throwable){
 
@@ -28,9 +29,27 @@ class SafeApiCall<T>(
                 throw throwable
             }
 
-            error?.let { errorFallback ->return errorFallback.invoke() }
+           //TODO CORRECT THIS
+//            error?.let { errorFallback ->return ResponseFromServer.Error(Exception(errorFallback() as String) ) }
 
             throw throwable
         }
     }
+
+
+    private  fun Response<T>.categorizeResponse():ResponseFromServer<T>{
+
+       return if(isSuccessful){
+            ResponseFromServer.Success(this.body()!!)
+        }else{
+           ResponseFromServer.Error(Exception("An Error Occurred"))
+        }
+    }
 }
+
+ sealed  class ResponseFromServer< out T>{
+
+     class Success <out T>(val data:T):ResponseFromServer<T>()
+     class Error(val exception:Exception):ResponseFromServer<Nothing>()
+//     class Exception <R>(data:Throwable):ResponseFromServer()
+ }
