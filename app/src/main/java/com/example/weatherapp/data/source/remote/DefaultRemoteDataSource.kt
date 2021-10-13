@@ -1,11 +1,9 @@
 package com.example.weatherapp.data.source.remote
 
 import com.example.weatherapp.BuildConfig
-import com.example.weatherapp.data.source.remote.helper.ResponseFromServer
 import com.example.weatherapp.data.source.remote.model.WeatherReport
 import com.example.weatherapp.data.source.remote.service.WeatherService
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
+import com.example.weatherapp.ui.util.Extensions.TEMPERATURE_UNIT_METRIC
 import retrofit2.Response
 import javax.inject.Inject
 
@@ -17,7 +15,11 @@ class DefaultRemoteDataSource @Inject constructor(
     override suspend fun getCurrentDataResource(city: String): Response<WeatherReport> {
 
 //        return withContext(Dispatchers.IO) {
-           return weatherService.getCurrentWeather(appId =BuildConfig.WEATHER_API_KEY, q = city)
+        return weatherService.getCurrentWeather(
+            appId = BuildConfig.WEATHER_API_KEY,
+            q = city,
+            units = TEMPERATURE_UNIT_METRIC
+        )
 //        }
 
     }

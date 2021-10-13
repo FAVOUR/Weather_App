@@ -23,6 +23,7 @@ class DataBaseModule(private val application: Application)  {
     @Provides
     fun provideDataBase():WeatherDatabase{
         return Room.databaseBuilder(application, WeatherDatabase::class.java, BuildConfig.DATABASE_NAME)
+            .fallbackToDestructiveMigration()
             .build()
     }
 

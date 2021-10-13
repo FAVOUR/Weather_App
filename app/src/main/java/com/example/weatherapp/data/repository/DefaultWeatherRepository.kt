@@ -8,17 +8,18 @@ import com.example.weatherapp.data.source.remote.helper.ResponseFromServer
 import com.example.weatherapp.data.source.remote.helper.SafeApiCall
 import com.example.weatherapp.data.source.remote.model.WeatherReport
 import com.google.gson.Gson
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.FlowPreview
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.asFlow
-import kotlinx.coroutines.flow.flatMapMerge
-import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
+import kotlin.coroutines.CoroutineContext
 
 
 class DefaultWeatherRepository @Inject constructor(
     private val remoteDataSource: RemoteDataSource,
-    private val localDataSource: LocalDataSource
+    private val localDataSource: LocalDataSource,
+    private val dispatchers:CoroutineContext
 ) : WeatherRepository {
 
     override fun getCurrentWeather(): Flow<List<WeatherEntity>> {
@@ -40,17 +41,20 @@ class DefaultWeatherRepository @Inject constructor(
 
                     emit(request.makeApiNetworkRequest())
                 }
-            }
+            }.flowOn(dispatchers)
     }
 
-    override fun clearWeatherData() {
-        localDataSource.deleteAllWeatherReport()
+    override suspend fun clearWeatherData() {
+        withContext(dispatchers) {
+            localDataSource.deleteAllWeatherReport()
+        }
     }
 
-    override fun insertWeatherData(allWeatherResult: WeatherEntity) {
-        Log.e("insertWeatherData", Gson().toJson(allWeatherResult))
 
-        localDataSource.saveWeatherReports(allWeatherResult)
+    override suspend fun insertWeatherData(allWeatherResult: WeatherEntity) {
+        withContext(dispatchers) {
+            localDataSource.saveWeatherReports(allWeatherResult)
+        }
     }
 
 

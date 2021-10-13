@@ -18,4 +18,14 @@
     <!-- Weather List Header margin -->
     <dimen name="header_margin">24dp</dimen>
 
+
+<!--    Weather Details fragment-->
+<!--    &lt;!&ndash; Padding on the bottom of a screen so that the FAB won't overlap scrolled text. &ndash;&gt;-->
+<!--    <dimen name="fab_bottom_padding">72dp</dimen>-->
+
+    <dimen name="weather_detail_app_bar_height">478dp</dimen>
+    <dimen name="weather_detail_icon_width">70dp</dimen>
+    <dimen name="weather_detail_icon_height">50dp</dimen>
+
+
 </resources>

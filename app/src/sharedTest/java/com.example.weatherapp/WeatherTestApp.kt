@@ -1,11 +1,13 @@
 package com.example.weatherapp
 
+import android.app.Application
 import com.example.weatherapp.di.component.AppComponent
-import com.example.weatherapp.di.component.DaggerAppComponent
 import com.example.weatherapp.di.component.TestAppComponent
 import com.example.weatherapp.di.module.DataBaseModule
 
 class WeatherTestApp:WeatherApp() {
+
+//    val builder = Dagg
 
 //    override fun initialiseAppComponent():AppComponent{
 //

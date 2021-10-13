@@ -10,6 +10,7 @@ import com.example.weatherapp.data.mappers.DataSourceMappers.toUiModel
 import com.example.weatherapp.data.repository.WeatherRepository
 import com.example.weatherapp.data.source.remote.helper.ResponseFromServer
 import com.example.weatherapp.ui.model.WeatherData
+import com.example.weatherapp.ui.util.Event
 import com.google.gson.Gson
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -35,12 +36,12 @@ class WeatherViewModel @Inject constructor(
      * MutableLiveData allows anyone to set a value, and [WeatherViewModel] is the only
      * class that should be setting values.
      */
-    private val _snackbarMessage = MutableLiveData<String?>()
+    private val _snackbarMessage = MutableLiveData<Event<String?>>()
 
     /**
      * Request a snackbar to display a string.
      */
-    val snackbarMessage: LiveData<String?> //You can use the event class
+    val snackbarMessage: LiveData<Event<String?>> //You can use the event class
         get() = _snackbarMessage
 
     private val _displaySpinner = MutableLiveData<Boolean>(false)
@@ -60,7 +61,7 @@ class WeatherViewModel @Inject constructor(
                     Log.e("Data from DB", Gson().toJson(it))
                     it.map { weatherEntity -> weatherEntity.toUiModel() }
                 }
-                .catch { throwable -> _snackbarMessage.value = throwable.message }
+                .catch { throwable -> _snackbarMessage.value = Event(throwable.message) }
 
                 .collect {
                     _uiState.value = it
@@ -76,17 +77,21 @@ class WeatherViewModel @Inject constructor(
     fun updateWeatherData(cities: List<String>) {
 
         viewModelScope.launch {
+
             _displaySpinner.value = true
-            weatherRepository.fetchWeatherData(listOfCities = cities)
+
+          val listOfData=  weatherRepository.fetchWeatherData(listOfCities = cities)
                 .onEach {
                     _displaySpinner.value = false
                 }
                 .catch { throwable ->
                     throwable.printStackTrace()
-                    _snackbarMessage.value = throwable.message
-                }
+                    _snackbarMessage.value = Event(throwable.message)
+                }.toList()
 
-                .collect { response ->
+                   weatherRepository.clearWeatherData()
+
+              listOfData.forEach{ response ->
 
                     when (response) {
                         is ResponseFromServer.Success -> {
@@ -94,7 +99,8 @@ class WeatherViewModel @Inject constructor(
                             weatherRepository.insertWeatherData(response.data.toDataBaseModel())
                         }
                         is ResponseFromServer.Error -> {
-                            response.exception
+//
+                            _snackbarMessage.value = Event("Could Not Retrieve some countries")
                         }
                     }
 

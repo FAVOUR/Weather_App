@@ -11,8 +11,8 @@ interface WeatherRepository {
 
     fun fetchWeatherData(listOfCities: List<String>): Flow<ResponseFromServer<WeatherReport>>
 
-    fun clearWeatherData()
+    suspend fun clearWeatherData()
 
-    fun insertWeatherData(allWeatherResult: WeatherEntity)
+    suspend fun insertWeatherData(allWeatherResult: WeatherEntity)
 
 }

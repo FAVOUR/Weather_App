@@ -37,6 +37,14 @@ class WeatherDetailFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_weather_detail, container, false)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        toolbar.setNavigationOnClickListener { view ->
+            view.findNavController().navigateUp()
+        }
+
+    }
+
     companion object {
         /**
          * Use this factory method to create a new instance of

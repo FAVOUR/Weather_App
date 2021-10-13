@@ -6,21 +6,20 @@ import com.example.weatherapp.BuildConfig
 import com.example.weatherapp.data.source.local.db.WeatherDatabase
 import dagger.Binds
 import dagger.Module
+import dagger.Provides
+import javax.inject.Named
 import javax.inject.Singleton
 
 @Module
 class DataBaseModuleTest(val application: Application) {
-//
-//    @Singleton
-//    @Binds
-//    fun provideWeatherDao(weatherDatabase: WeatherDatabase) {
-//        weatherDatabase.weatherDao()
-//    }
+
 
     @Singleton
-    @Binds
-    fun provideDataBase() {
-        Room.databaseBuilder(application, WeatherDatabase::class.java, BuildConfig.DATABASE_NAME)
-            .build()
+    @Provides
+    @Named("test_database")
+    fun provideDataBase():WeatherDatabase {
+       return Room.databaseBuilder(application, WeatherDatabase::class.java, BuildConfig.DATABASE_NAME)
+           .allowMainThreadQueries()
+           .build()
     }
 }

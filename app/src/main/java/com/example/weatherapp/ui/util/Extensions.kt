@@ -4,6 +4,7 @@ import android.Manifest.permission
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
+import android.util.Log
 import android.widget.ImageView
 import androidx.annotation.DrawableRes
 import androidx.annotation.RequiresPermission
@@ -16,7 +17,9 @@ import com.example.weatherapp.R
 
 object Extensions {
 
-    const val IMAGE_SUFFIX = ".png"
+    const val IMAGE_SUFFIX_PNG = ".png"
+    const val TEMPERATURE_DEGREE = '\u00B0'
+    const val TEMPERATURE_UNIT_METRIC= "metric"
 
     //Cities
     const val KENYA = "Kenya"
@@ -44,7 +47,7 @@ object Extensions {
     ) {
         Glide
             .with(imageView.context)
-            .load(BuildConfig.BASEURL + BuildConfig.IMAGE_ENDPOINT + icon)
+            .load( BuildConfig.IMAGE_ENDPOINT + icon+IMAGE_SUFFIX_PNG)
 //          .centerCrop()
             .transition(DrawableTransitionOptions.withCrossFade())
 //          .placeholder(defaultImage)
@@ -55,6 +58,7 @@ object Extensions {
     fun getImageBasedOnLandMark(city: String): Int {
         return when (city) {
             KENYA -> {
+                Log.e("Kemya","here")
                 R.drawable.kenya
             }
             CAIRO -> {

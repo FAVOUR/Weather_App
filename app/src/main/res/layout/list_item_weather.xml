@@ -27,6 +27,7 @@
             android:contentDescription="@string/popular_landmark"
             android:scaleType="centerCrop"
             android:src="@drawable/kenya"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -40,6 +41,7 @@
             android:layout_marginStart="@dimen/view_margin_start"
             android:contentDescription="@string/image_icon"
             android:src="@drawable/ic_storm_weather"
+            app:layout_constraintBottom_toBottomOf="@+id/weatherDesc_Tv"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -55,17 +57,20 @@
 
         <TextView
             android:id="@+id/temperature_Tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="15dp"
             android:layout_marginStart="@dimen/view_margin_start"
+            android:layout_marginBottom="8dp"
             android:textColor="@color/white"
-            android:textSize="@dimen/temperature_text_size"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/cityAndCountry_Tv"
             app:layout_constraintStart_toStartOf="parent"
-            tools:text="6\u00B0" />
+            tools:text="69.889\u00B0" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/cityAndCountry_Tv"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/view_margin_start"
             android:textColor="@color/white"

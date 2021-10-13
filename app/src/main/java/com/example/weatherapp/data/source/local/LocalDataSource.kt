@@ -7,10 +7,8 @@ interface LocalDataSource {
 
     fun getWeatherReports(): Flow<List<WeatherEntity>>
 
-//    fun saveWeatherReports(allWeatherReports: List<WeatherEntity>)
-    fun saveWeatherReports(allWeatherReports: WeatherEntity)
+    suspend fun saveWeatherReports(allWeatherReports: WeatherEntity)
 
-    fun updateWeatherReports(allWeatherReports: List<WeatherEntity>)
 
-    fun deleteAllWeatherReport()
+    suspend fun deleteAllWeatherReport()
 }

@@ -16,7 +16,22 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.example.weatherapp.R
 import com.example.weatherapp.databinding.FragmentWeatherBinding
 import com.example.weatherapp.ui.adapter.WeatherAdapter
+import com.example.weatherapp.ui.util.Extensions.ABUJA
+import com.example.weatherapp.ui.util.Extensions.AMAZON
+import com.example.weatherapp.ui.util.Extensions.ANKARA
+import com.example.weatherapp.ui.util.Extensions.BAGDAD
+import com.example.weatherapp.ui.util.Extensions.CAIRO
+import com.example.weatherapp.ui.util.Extensions.JAKATA
+import com.example.weatherapp.ui.util.Extensions.KANO
 import com.example.weatherapp.ui.util.Extensions.KENYA
+import com.example.weatherapp.ui.util.Extensions.LAGOS
+import com.example.weatherapp.ui.util.Extensions.LESOTHO
+import com.example.weatherapp.ui.util.Extensions.NEW_YORK
+import com.example.weatherapp.ui.util.Extensions.PERU
+import com.example.weatherapp.ui.util.Extensions.TEXAS
+import com.example.weatherapp.ui.util.Extensions.WBELARUS
+import com.example.weatherapp.ui.util.Extensions.WESTHAM
+import com.example.weatherapp.ui.util.Extensions.WINNIPEG
 import com.example.weatherapp.ui.util.Extensions.getAppInstance
 import com.example.weatherapp.ui.util.Extensions.isNetworkConnected
 import com.example.weatherapp.ui.viewmodel.WeatherViewModel
@@ -47,8 +62,9 @@ class WeatherFragment : Fragment() {
     }
 
      val cities by lazy {
-//        arrayListOf(KENYA,CAIRO, LAGOS, ABUJA, NEW_YORK, TEXAS, AMAZON, WBELARUS)
-        arrayListOf(KENYA)
+        arrayListOf(KENYA,CAIRO, LAGOS, ABUJA, NEW_YORK, TEXAS, AMAZON, WBELARUS, LESOTHO, JAKATA,
+            ANKARA, KANO, PERU, WINNIPEG, BAGDAD, WESTHAM)
+//        arrayListOf(KENYA,CAIRO)
     }
 
     override fun onAttach(context: Context) {
@@ -83,8 +99,8 @@ class WeatherFragment : Fragment() {
 
         // Show a snackbar whenever the [ViewModel.snackbar] is updated a non-null value
         viewModel.snackbarMessage.observe(viewLifecycleOwner) { text ->
-            text?.let {
-                Snackbar.make(binding.root, text, Snackbar.LENGTH_SHORT).show()
+            text.getContentIfNotHandled()?.let {
+                Snackbar.make(binding.root, text.toString(), Snackbar.LENGTH_SHORT).show()
             }
         }
 

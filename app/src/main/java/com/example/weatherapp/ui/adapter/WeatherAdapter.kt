@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.weatherapp.R
 import com.example.weatherapp.databinding.ListItemWeatherBinding
 import com.example.weatherapp.ui.model.WeatherData
+import com.example.weatherapp.ui.util.Extensions.TEMPERATURE_DEGREE
 import com.example.weatherapp.ui.util.Extensions.getImageBasedOnLandMark
 import com.example.weatherapp.ui.util.Extensions.setWeatherConditionImage
 
@@ -31,10 +32,15 @@ class WeatherAdapter : ListAdapter<WeatherData, WeatherViewHolder>(WeatherDiffUt
  class WeatherViewHolder(private val binding: ListItemWeatherBinding) : RecyclerView.ViewHolder(binding.root){
 
     fun bind(item:WeatherData){
-        binding.landmarkPhoto.setImageResource(getImageBasedOnLandMark(city = item.city))
-        setWeatherConditionImage(imageView = binding.landmarkPhoto ,icon =item.icon,defaultImage = R.drawable.ic_unknown)
-        binding.temperatureTv.text=item.temperature.toString()
+        binding.landmarkPhoto.setBackgroundResource(getImageBasedOnLandMark(city = item.city))
+
+        setWeatherConditionImage(imageView = binding.weatherIconIv ,icon =item.icon,defaultImage = R.drawable.ic_unknown)
+
+        "${item.temperature}$TEMPERATURE_DEGREE".also { binding.temperatureTv.text = it }
+
         binding.weatherDescTv .text=item.description
+
+        "${ item.city }, ${item.country}".also { binding.cityAndCountryTv.text = it }
     }
 }
 

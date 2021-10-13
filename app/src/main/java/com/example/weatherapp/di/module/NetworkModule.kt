@@ -4,12 +4,14 @@ import com.example.weatherapp.BuildConfig
 import com.example.weatherapp.data.source.remote.service.WeatherService
 import dagger.Module
 import dagger.Provides
+import kotlinx.coroutines.Dispatchers
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
+import kotlin.coroutines.CoroutineContext
 
 @Module
 class NetworkModule{
@@ -31,6 +33,12 @@ class NetworkModule{
             .build()
     }
 
+
+    @Singleton
+    @Provides
+    fun provideCoroutineContext():CoroutineContext{
+        return Dispatchers.IO
+    }
 
     @Singleton
     @Provides

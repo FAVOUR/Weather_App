@@ -19,8 +19,7 @@ interface WeatherService {
     @GET("weather")
    suspend fun getCurrentWeather(
         @Query("q") q: String?,
-//        @Query("units") units: String?,
-//        @Query("lang") lang: String?,
+        @Query("units") units: String?,
         @Query("appid") appId: String?
     ): Response<WeatherReport>
 
