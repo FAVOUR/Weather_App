@@ -10,7 +10,8 @@ interface WeatherDao {
 
 
     @Insert
-    fun insertWeatherData(weatherDataList:  List<WeatherEntity>)
+    fun insertWeatherData(weatherDataList:WeatherEntity)
+//    fun insertWeatherData(weatherDataList:  List<WeatherEntity>)
 
     @Update
     fun updateWeatherData(weatherDataList:  List<WeatherEntity>)
@@ -22,4 +23,6 @@ interface WeatherDao {
 
     @Query("DELETE FROM weatherentity")
     fun deleteAllWeatherData()
+
+
 }

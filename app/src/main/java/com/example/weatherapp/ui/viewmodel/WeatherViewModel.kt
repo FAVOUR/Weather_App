@@ -1,5 +1,6 @@
 package com.example.weatherapp.ui.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -9,6 +10,7 @@ import com.example.weatherapp.data.mappers.DataSourceMappers.toUiModel
 import com.example.weatherapp.data.repository.WeatherRepository
 import com.example.weatherapp.data.source.remote.helper.ResponseFromServer
 import com.example.weatherapp.ui.model.WeatherData
+import com.google.gson.Gson
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -42,6 +44,7 @@ class WeatherViewModel @Inject constructor(
         get() = _snackbarMessage
 
     private val _displaySpinner = MutableLiveData<Boolean>(false)
+
     /**
      * Show a loading spinner if true
      */
@@ -49,15 +52,15 @@ class WeatherViewModel @Inject constructor(
         get() = _displaySpinner
 
 
-
     init {
 
         viewModelScope.launch {
             weatherRepository.getCurrentWeather()
                 .map {
+                    Log.e("Data from DB", Gson().toJson(it))
                     it.map { weatherEntity -> weatherEntity.toUiModel() }
                 }
-                .catch { throwable ->  _snackbarMessage.value = throwable.message  }
+                .catch { throwable -> _snackbarMessage.value = throwable.message }
 
                 .collect {
                     _uiState.value = it
@@ -78,17 +81,21 @@ class WeatherViewModel @Inject constructor(
                 .onEach {
                     _displaySpinner.value = false
                 }
-                .catch { throwable ->  _snackbarMessage.value = throwable.message  }
+                .catch { throwable ->
+                    throwable.printStackTrace()
+                    _snackbarMessage.value = throwable.message
+                }
 
                 .collect { response ->
 
                     when (response) {
                         is ResponseFromServer.Success -> {
+                            Log.e("Query successful", Gson().toJson(response.data))
                             weatherRepository.insertWeatherData(response.data.toDataBaseModel())
                         }
                         is ResponseFromServer.Error -> {
                             response.exception
-                          }
+                        }
                     }
 
                 }

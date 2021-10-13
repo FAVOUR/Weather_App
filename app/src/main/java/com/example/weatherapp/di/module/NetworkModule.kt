@@ -1,16 +1,9 @@
 package com.example.weatherapp.di.module
 
-import android.app.Application
-import androidx.room.Room
-import androidx.room.RoomDatabase
 import com.example.weatherapp.BuildConfig
-import com.example.weatherapp.data.source.local.dao.WeatherDao
-import com.example.weatherapp.data.source.local.db.WeatherDatabase
 import com.example.weatherapp.data.source.remote.service.WeatherService
-import dagger.Binds
 import dagger.Module
 import dagger.Provides
-import okhttp3.OkHttp
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -37,7 +30,6 @@ class NetworkModule{
             }
             .build()
     }
-
 
 
     @Singleton

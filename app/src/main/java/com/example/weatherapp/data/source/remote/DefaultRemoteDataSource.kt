@@ -1,5 +1,6 @@
 package com.example.weatherapp.data.source.remote
 
+import com.example.weatherapp.BuildConfig
 import com.example.weatherapp.data.source.remote.helper.ResponseFromServer
 import com.example.weatherapp.data.source.remote.model.WeatherReport
 import com.example.weatherapp.data.source.remote.service.WeatherService
@@ -16,7 +17,7 @@ class DefaultRemoteDataSource @Inject constructor(
     override suspend fun getCurrentDataResource(city: String): Response<WeatherReport> {
 
 //        return withContext(Dispatchers.IO) {
-           return weatherService.getCurrentWeather(appId = "", q = city)
+           return weatherService.getCurrentWeather(appId =BuildConfig.WEATHER_API_KEY, q = city)
 //        }
 
     }

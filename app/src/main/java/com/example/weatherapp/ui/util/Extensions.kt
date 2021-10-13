@@ -1,39 +1,50 @@
 package com.example.weatherapp.ui.util
 
+import android.Manifest.permission
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import android.widget.ImageView
 import androidx.annotation.DrawableRes
+import androidx.annotation.RequiresPermission
+import androidx.fragment.app.FragmentActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import com.example.weatherapp.WeatherApp
 import com.example.weatherapp.BuildConfig
 import com.example.weatherapp.R
 
 object Extensions {
 
-    const val IMAGE_SUFFIX=".png"
+    const val IMAGE_SUFFIX = ".png"
 
     //Cities
-    const val KENYA="Kenya"
-    const val CAIRO="Cairo"
-    const val LAGOS="Lagos"
-    const val ABUJA="Abuja"
-    const val NEW_YORK="New York"
-    const val TEXAS="Texas"
-    const val AMAZON="Amazon"
-    const val WBELARUS="WBelarus"
-    const val LESOTHO="Lesotho"
-    const val JAKATA="Jakata"
-    const val ANKARA="Ankara"
-    const val KANO="Kano"
-    const val PERU="Peru"
-    const val WINNIPEG="Winnipeg"
-    const val BAGDAD="Bagdad"
-    const val WESTHAM="Westham"
+    const val KENYA = "Kenya"
+    const val CAIRO = "Cairo"
+    const val LAGOS = "Lagos"
+    const val ABUJA = "Abuja"
+    const val NEW_YORK = "New York"
+    const val TEXAS = "Texas"
+    const val AMAZON = "Amazon"
+    const val WBELARUS = "WBelarus"
+    const val LESOTHO = "Lesotho"
+    const val JAKATA = "Jakata"
+    const val ANKARA = "Ankara"
+    const val KANO = "Kano"
+    const val PERU = "Peru"
+    const val WINNIPEG = "Winnipeg"
+    const val BAGDAD = "Bagdad"
+    const val WESTHAM = "Westham"
 
 
-    fun setWeatherConditionImage(imageView: ImageView, icon:String, @DrawableRes defaultImage:Int){
+    fun setWeatherConditionImage(
+        imageView: ImageView,
+        icon: String,
+        @DrawableRes defaultImage: Int
+    ) {
         Glide
             .with(imageView.context)
-            .load(BuildConfig.BASEURL+BuildConfig.IMAGE_ENDPOINT+icon)
+            .load(BuildConfig.BASEURL + BuildConfig.IMAGE_ENDPOINT + icon)
 //          .centerCrop()
             .transition(DrawableTransitionOptions.withCrossFade())
 //          .placeholder(defaultImage)
@@ -41,44 +52,94 @@ object Extensions {
     }
 
 
-    fun getImageBasedOnLandMark(city:String): Int{
-        return when(city){
-            KENYA->{
+    fun getImageBasedOnLandMark(city: String): Int {
+        return when (city) {
+            KENYA -> {
                 R.drawable.kenya
-            } CAIRO->{
+            }
+            CAIRO -> {
                 R.drawable.kenya
-            } LAGOS->{
+            }
+            LAGOS -> {
                 R.drawable.kenya
-            } ABUJA->{
+            }
+            ABUJA -> {
                 R.drawable.kenya
-            } NEW_YORK->{
+            }
+            NEW_YORK -> {
                 R.drawable.kenya
-            } TEXAS->{
+            }
+            TEXAS -> {
                 R.drawable.kenya
-            } AMAZON->{
+            }
+            AMAZON -> {
                 R.drawable.kenya
-            } WBELARUS->{
+            }
+            WBELARUS -> {
                 R.drawable.kenya
-            } LESOTHO->{
+            }
+            LESOTHO -> {
                 R.drawable.kenya
-            } JAKATA->{
+            }
+            JAKATA -> {
                 R.drawable.kenya
-            } ANKARA->{
+            }
+            ANKARA -> {
                 R.drawable.kenya
-            } KANO->{
+            }
+            KANO -> {
                 R.drawable.kenya
-            } PERU->{
+            }
+            PERU -> {
                 R.drawable.kenya
-            } WINNIPEG->{
+            }
+            WINNIPEG -> {
                 R.drawable.kenya
-            } BAGDAD->{
+            }
+            BAGDAD -> {
                 R.drawable.kenya
-            } WESTHAM->{
+            }
+            WESTHAM -> {
                 R.drawable.kenya
-            } else ->{
+            }
+            else -> {
                 R.drawable.ic_unknown
             }
         }
+    }
+
+
+    /**
+     * Gets the instance of application
+     * */
+    fun FragmentActivity.getAppInstance(): WeatherApp {
+
+        return (this.application as WeatherApp)
+    }
+
+
+    /**
+     * If network connection is connect, return true
+     *
+     * @return boolean value
+     */
+    @RequiresPermission(permission.ACCESS_NETWORK_STATE)
+    fun FragmentActivity.isNetworkConnected(): Boolean {
+        val info = getActiveNetworkInfo()
+        return info != null && info.isConnected
+    }
+
+    /**
+     * Get activity network info instace
+     *
+     * @return instance of [NetworkInfo]
+     */
+    @RequiresPermission(permission.ACCESS_NETWORK_STATE)
+    private fun FragmentActivity.getActiveNetworkInfo(): NetworkInfo? {
+        val cm = getAppInstance()
+            .getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+            ?: return null
+        return cm.activeNetworkInfo
     }
 
 

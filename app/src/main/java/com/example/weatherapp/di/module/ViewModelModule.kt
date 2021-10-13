@@ -13,12 +13,12 @@ import dagger.multibindings.IntoMap
  abstract class ViewModelModule {
 
     @Binds
-    internal abstract fun bindViewModelFactory(viewModelFactory:WeatherViewModelFactory):ViewModelProvider.Factory
+     abstract fun bindViewModelFactory(viewModelFactory:WeatherViewModelFactory):ViewModelProvider.Factory
 
     @Binds
     @IntoMap
     @ViewModelKey(WeatherViewModel::class)
-    internal abstract fun bindsWeatherViewModel(viewModel:WeatherViewModel): ViewModel
+     abstract fun bindsWeatherViewModel(viewModel:WeatherViewModel): ViewModel
 
 
 }

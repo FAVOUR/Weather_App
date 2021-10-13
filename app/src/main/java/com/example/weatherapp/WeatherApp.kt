@@ -7,15 +7,15 @@ import com.example.weatherapp.di.module.DataBaseModule
 import okhttp3.internal.notifyAll
 import okhttp3.internal.wait
 
-class App : Application() {
+open class WeatherApp : Application() {
 
     val appComponent by lazy {
         initialiseAppComponent()
     }
 
-    private fun initialiseAppComponent(): AppComponent {
+     fun initialiseAppComponent(): AppComponent {
         val builder = DaggerAppComponent.builder()
-        //Use factory method insted
+        //Use factory method instead
         return builder.dataBaseModule (DataBaseModule(this))
             .build()
     }

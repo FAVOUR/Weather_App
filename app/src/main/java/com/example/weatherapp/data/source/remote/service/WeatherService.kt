@@ -16,7 +16,7 @@ interface WeatherService {
      * @return instance of [WeatherReport]
      */
 
-    @GET("api.openweathermap.org/data/2.5/weather")
+    @GET("weather")
    suspend fun getCurrentWeather(
         @Query("q") q: String?,
 //        @Query("units") units: String?,
