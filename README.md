@@ -14,7 +14,6 @@ eg.
 WEATHER_API_KEY ="XXXXXXXX"
 ```
 
-
 ### Background
 
 Design a two-page mobile weather application detailing the weather information for  cities in the table below
