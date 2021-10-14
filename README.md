@@ -1,13 +1,12 @@
 
 The final app looks like this:
 
-<p align="center"><img src="assets/screen1.png" /></p>
 <p align="center"><img src="assets/screen2.png" /></p>
 
 
 ### Prerequisites
 
-Before running this app, you need to create and add your api key, in a file named "apikeys.properties"
+Before running this app,check to confirm there is a file named apikeys.properties else if not found please create , in a file named "apikeys.properties" and add it to the project level files and then add the keys using same format sa shown below
 
 ```yaml
 eg.
@@ -38,8 +37,7 @@ Design a two-page mobile weather application detailing the weather information f
     * MVVM - Model View View Model
 * Tests
     * [Unit Tests](https://en.wikipedia.org/wiki/Unit_testing) ([JUnit](https://junit.org/junit4/)) - a simple framework to write repeatable tests.
-    * [Mockito](https://github.com/mockk) - mocking library for Kotlin
-    * [Truth](https://github.com/MarkusAmshove/Kluent) - Assertion library
+    * [Truth](https://github.com/google/truth) - Assertion library
 
 ## License
 ```
