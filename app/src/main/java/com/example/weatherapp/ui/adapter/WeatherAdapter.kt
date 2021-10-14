@@ -1,6 +1,5 @@
 package com.example.weatherapp.ui.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,7 +7,6 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.weatherapp.R
 import com.example.weatherapp.databinding.ListItemWeatherBinding
 import com.example.weatherapp.ui.model.WeatherData
 import com.example.weatherapp.ui.util.Extensions.formatTemperature
@@ -40,11 +38,17 @@ class WeatherAdapter(private val onClickListener: (WeatherData, View) -> Unit) :
     }
 }
 
+
 class WeatherViewHolder(private val binding: ListItemWeatherBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
     fun bind(item: WeatherData) {
-        binding.landmarkPhoto.setImageDrawable(ContextCompat.getDrawable(binding.root.context,getImageBasedOnLandMark(city = item.city)))
+        binding.landmarkPhoto.setImageDrawable(
+            ContextCompat.getDrawable(
+                binding.root.context,
+                getImageBasedOnLandMark(city = item.city)
+            )
+        )
 
         setWeatherConditionImage(
             imageView = binding.weatherIconIv,
@@ -57,8 +61,6 @@ class WeatherViewHolder(private val binding: ListItemWeatherBinding) :
 
         getLocation(item).also { binding.cityAndCountryTv.text = it }
     }
-
-
 
 
 }

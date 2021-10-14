@@ -5,20 +5,23 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.annotation.RequiresPermission
 import androidx.fragment.app.FragmentActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
-import com.example.weatherapp.WeatherApp
 import com.example.weatherapp.BuildConfig
 import com.example.weatherapp.R
+import com.example.weatherapp.WeatherApp
 import com.example.weatherapp.ui.model.WeatherData
+import com.google.android.material.appbar.AppBarLayout
+import com.google.android.material.appbar.CollapsingToolbarLayout
 
 object Extensions {
 
     private const val IMAGE_SUFFIX_PNG = ".png"
     private const val TEMPERATURE_DEGREE = '\u00B0'
-    const val TEMPERATURE_UNIT_METRIC= "metric"
+    const val TEMPERATURE_UNIT_METRIC = "metric"
 
     //Cities
     const val KENYA = "Kenya"
@@ -45,10 +48,8 @@ object Extensions {
     ) {
         Glide
             .with(imageView.context)
-            .load( BuildConfig.IMAGE_ENDPOINT + weatherIdentifier+IMAGE_SUFFIX_PNG)
-//          .centerCrop()
+            .load(BuildConfig.IMAGE_ENDPOINT + weatherIdentifier + IMAGE_SUFFIX_PNG)
             .transition(DrawableTransitionOptions.withCrossFade())
-//          .placeholder(defaultImage)
             .into(imageView)
     }
 
@@ -140,7 +141,6 @@ object Extensions {
     private fun FragmentActivity.getActiveNetworkInfo(): NetworkInfo? {
         val cm = getAppInstance()
             .getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-            ?: return null
         return cm.activeNetworkInfo
     }
 
@@ -148,8 +148,49 @@ object Extensions {
     fun getLocation(item: WeatherData) =
         "${item.city}, ${item.country}"
 
+
     fun formatTemperature(temperature: Double) =
         "${temperature}$TEMPERATURE_DEGREE"
 
 
+    fun displayCollapsingToolBarTitle(
+        appBarLayout: AppBarLayout,
+        collapsingToolbarLayout: CollapsingToolbarLayout,
+        dataWhenCollapsed: String,
+        dataWhenNotCollapsed: String
+    ) {
+        var isShow = true
+        var scrollRange = -1
+        appBarLayout.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { barLayout, verticalOffset ->
+            if (scrollRange == -1) {
+                scrollRange = barLayout?.totalScrollRange!!
+            }
+
+            // display data when the view is collapsed
+            if (scrollRange + verticalOffset == 0) {
+                collapsingToolbarLayout.title = dataWhenCollapsed
+                isShow = true
+            } else if (isShow) {
+
+               // display data when the view is not collapsed
+                collapsingToolbarLayout.title =
+                    dataWhenNotCollapsed
+                isShow = false
+            }
+        })
+    }
+
+
+    fun FragmentActivity.reportInternetConnectivityOrTakeAction(action:(()->Unit)?=null) {
+
+        if (isNetworkConnected()) {
+            action?.invoke()
+        } else {
+            Toast.makeText(
+                this,
+                resources.getString(R.string.no_internet_message),
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+    }
 }
