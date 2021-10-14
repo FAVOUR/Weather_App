@@ -138,9 +138,7 @@ class WeatherDetailFragment : Fragment() {
 
                 tempInfoTv.text = it.temperature.toString()
 
-            }
-
-                .coreWeatherDetails.also {
+            }.coreWeatherDetails.also {
 
                     humidityInfoTv.text = it.humidity.toString()
                     tempFeelsLikeInfoTv.text = formatTemperature(it.feelsLike)
