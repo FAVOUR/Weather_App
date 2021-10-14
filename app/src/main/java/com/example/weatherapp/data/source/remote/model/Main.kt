@@ -9,6 +9,9 @@ class Main (
     @SerializedName("temp_min")
     val tempMin :Double,
 
+    @SerializedName("feels_like")
+    val feelsLike :Double,
+
     @SerializedName("grnd_level")
     val grndLevel:Double,
 

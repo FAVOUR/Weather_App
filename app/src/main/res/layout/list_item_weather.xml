@@ -26,21 +26,19 @@
             android:layout_height="@dimen/city_item_image_height"
             android:contentDescription="@string/popular_landmark"
             android:scaleType="centerCrop"
-            android:src="@drawable/kenya"
+
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
 
             />
-
         <ImageView
             android:id="@+id/weatherIcon_Iv"
             android:layout_width="@dimen/weather_icon_width"
             android:layout_height="@dimen/weather_icon_height"
             android:layout_marginStart="@dimen/view_margin_start"
             android:contentDescription="@string/image_icon"
-            android:src="@drawable/ic_storm_weather"
             app:layout_constraintBottom_toBottomOf="@+id/weatherDesc_Tv"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

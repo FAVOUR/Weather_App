@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:showIn="@layout/fragment_weather_detail">
+
+    <ImageView
+        android:id="@+id/weatherIcon_Iv"
+        android:layout_width="@dimen/weather_icon_width"
+        android:layout_height="@dimen/weather_icon_height"
+        android:layout_gravity="start"
+        android:layout_marginStart="@dimen/view_margin_start"
+        android:layout_marginTop="@dimen/weather_detail_icon_margin_top"
+        android:contentDescription="@string/image_icon"
+        app:layout_constraintEnd_toStartOf="@id/weatherDesc_Tv"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <TextView
+        android:id="@+id/weatherDesc_Tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/view_margin_start"
+        android:textSize="@dimen/weather_detail_des_text_size"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@id/temperature_Tv"
+        app:layout_constraintStart_toEndOf="@id/weatherIcon_Iv"
+        app:layout_constraintTop_toTopOf="@id/weatherIcon_Iv"
+        tools:text="Foggy" />
+
+    <TextView
+        android:id="@+id/cityAndCountry_Tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/weather_detail_view_margin_top"
+        android:textSize="@dimen/weather_details_sub_text_size"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@id/temperature_Tv"
+        app:layout_constraintStart_toStartOf="@id/weatherIcon_Iv"
+        app:layout_constraintTop_toBottomOf="@id/weatherDesc_Tv"
+        tools:text="Lagos,Nigeria" />
+
+    <TextView
+        android:id="@+id/temperature_Tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/view_margin_end"
+        android:gravity="end"
+        android:textSize="@dimen/weather_detail_temp"
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@+id/cityAndCountry_Tv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/weatherDesc_Tv"
+        tools:text="69.889\u00B0" />
+</androidx.constraintlayout.widget.ConstraintLayout>

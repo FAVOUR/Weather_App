@@ -13,13 +13,15 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.findNavController
 import com.example.weatherapp.R
 import com.example.weatherapp.databinding.FragmentWeatherBinding
 import com.example.weatherapp.ui.adapter.WeatherAdapter
+import com.example.weatherapp.ui.model.WeatherData
 import com.example.weatherapp.ui.util.Extensions.ABUJA
 import com.example.weatherapp.ui.util.Extensions.AMAZON
 import com.example.weatherapp.ui.util.Extensions.ANKARA
-import com.example.weatherapp.ui.util.Extensions.BAGDAD
+import com.example.weatherapp.ui.util.Extensions.BAGHDAD
 import com.example.weatherapp.ui.util.Extensions.CAIRO
 import com.example.weatherapp.ui.util.Extensions.JAKATA
 import com.example.weatherapp.ui.util.Extensions.KANO
@@ -29,7 +31,7 @@ import com.example.weatherapp.ui.util.Extensions.LESOTHO
 import com.example.weatherapp.ui.util.Extensions.NEW_YORK
 import com.example.weatherapp.ui.util.Extensions.PERU
 import com.example.weatherapp.ui.util.Extensions.TEXAS
-import com.example.weatherapp.ui.util.Extensions.WBELARUS
+import com.example.weatherapp.ui.util.Extensions.BELARUS
 import com.example.weatherapp.ui.util.Extensions.WESTHAM
 import com.example.weatherapp.ui.util.Extensions.WINNIPEG
 import com.example.weatherapp.ui.util.Extensions.getAppInstance
@@ -42,28 +44,20 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-
 class WeatherFragment : Fragment() {
-//    // TODO: Rename and change types of parameters
-//    private var param1: String? = null
-//    private var param2: String? = null
-
 
     @Inject
     lateinit var weatherViewModelFactory: WeatherViewModelFactory
 
-    private val viewModel by activityViewModels<WeatherViewModel>() {
+    private val viewModel by activityViewModels<WeatherViewModel> {
         weatherViewModelFactory
     }
 
-     val cities by lazy {
-        arrayListOf(KENYA,CAIRO, LAGOS, ABUJA, NEW_YORK, TEXAS, AMAZON, WBELARUS, LESOTHO, JAKATA,
-            ANKARA, KANO, PERU, WINNIPEG, BAGDAD, WESTHAM)
+    val cities by lazy {
+        arrayListOf(
+            KENYA, CAIRO, LAGOS, ABUJA, NEW_YORK, TEXAS, AMAZON, BELARUS, LESOTHO, JAKATA,
+            ANKARA, KANO, PERU, WINNIPEG, BAGHDAD, WESTHAM
+        )
 //        arrayListOf(KENYA,CAIRO)
     }
 
@@ -74,16 +68,6 @@ class WeatherFragment : Fragment() {
     }
 
 
-
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-//        arguments?.let {
-//            param1 = it.getString(ARG_PARAM1)
-//            param2 = it.getString(ARG_PARAM2)
-//        }
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -92,12 +76,12 @@ class WeatherFragment : Fragment() {
 //         return  binding.root
 
 
-        // show the spinner when [MainViewModel.spinner] is true
+        // show the spinner when [MainViewModel.displaySpinner] is true
         viewModel.displaySpinner.observe(viewLifecycleOwner) { showSpinner ->
             binding.spinner.visibility = if (showSpinner) View.VISIBLE else View.GONE
         }
 
-        // Show a snackbar whenever the [ViewModel.snackbar] is updated a non-null value
+        // Show a snackbar whenever the [ViewModel.snackbarMessage] is updated a non-null value
         viewModel.snackbarMessage.observe(viewLifecycleOwner) { text ->
             text.getContentIfNotHandled()?.let {
                 Snackbar.make(binding.root, text.toString(), Snackbar.LENGTH_SHORT).show()
@@ -105,7 +89,9 @@ class WeatherFragment : Fragment() {
         }
 
         //Setup Adapter
-        val adapter = WeatherAdapter()
+        val adapter = WeatherAdapter { weatherData, view ->
+            navigateToWeatherDetailFragment(weatherData = weatherData, view = view)
+        }
         binding.weatherListRv.adapter = adapter
         subscribeUi(adapter)
         requireActivity().updateWeather(cities)
@@ -136,7 +122,7 @@ class WeatherFragment : Fragment() {
         }
     }
 
-    private fun FragmentActivity.updateWeather(listOfCities:List<String>) {
+    private fun FragmentActivity.updateWeather(listOfCities: List<String>) {
         if (isNetworkConnected()) {
             viewModel.updateWeatherData(cities = listOfCities)
         } else {
@@ -150,23 +136,13 @@ class WeatherFragment : Fragment() {
 
     }
 
-//    companion object {
-//        /**
-//         * Use this factory method to create a new instance of
-//         * this fragment using the provided parameters.
-//         *
-//         * @param param1 Parameter 1.
-//         * @param param2 Parameter 2.
-//         * @return A new instance of fragment WeatherFragment.
-//         */
-//        // TODO: Rename and change types and number of parameters
-//        @JvmStatic
-//        fun newInstance(param1: String, param2: String) =
-//            WeatherFragment().apply {
-//                arguments = Bundle().apply {
-//                    putString(ARG_PARAM1, param1)
-//                    putString(ARG_PARAM2, param2)
-//                }
-//            }
-//    }
+    private fun navigateToWeatherDetailFragment(weatherData: WeatherData, view: View) {
+        val direction =
+            WeatherFragmentDirections.actionWeatherFragmentToWeatherDetailsFragment(
+                weatherData.city
+            )
+        view.findNavController().navigate(direction)
+    }
+
+
 }

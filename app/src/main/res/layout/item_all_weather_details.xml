@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginStart="@dimen/view_margin_start"
+    android:layout_marginEnd="@dimen/view_margin_end"
+    android:theme="@style/Theme.WeatherApp.WeatherDetail.coreDetailsStyling"
+    tools:showIn="@layout/fragment_weather_detail">
+
+    <TextView
+        android:id="@+id/temp_Tv"
+        android:layout_width="@dimen/match_constraint"
+        android:layout_height="wrap_content"
+        android:text="@string/temperature"
+        android:layout_marginTop="@dimen/weather_detail_data_margin_top"
+        android:textSize="@dimen/core_weather_details_text_size"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tempInfo_tv" />
+
+    <TextView
+        android:id="@+id/tempInfo_tv"
+        android:layout_width="@dimen/match_constraint"
+        android:layout_height="wrap_content"
+        android:text="@string/dummy_number"
+        android:gravity="end"
+        app:layout_constraintBaseline_toBaselineOf="@+id/temp_Tv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/temp_Tv"
+        app:layout_constraintStart_toEndOf="@id/temp_Tv" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.0001dp"
+        android:background="@color/white_trans"
+        android:layout_margin="@dimen/divider_margin"
+        app:layout_constraintTop_toBottomOf="@id/temp_Tv"
+        app:layout_constraintStart_toStartOf="@id/temp_Tv"
+        app:layout_constraintEnd_toEndOf="@+id/tempInfo_tv"
+        />
+
+    <TextView
+        android:id="@+id/tempFeelsLike_Tv"
+        android:layout_width="@dimen/match_constraint"
+        android:layout_height="wrap_content"
+        android:text="@string/temp_feels_like"
+        android:layout_marginTop="@dimen/weather_detail_data_margin_top"
+        app:layout_constraintTop_toBottomOf="@id/temp_Tv"
+        app:layout_constraintStart_toStartOf="@id/temp_Tv"
+        app:layout_constraintEnd_toStartOf="@+id/tempFeelsLike_info_Tv" />
+
+    <TextView
+        android:id="@+id/tempFeelsLike_info_Tv"
+        android:layout_width="@dimen/match_constraint"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        tools:text="@string/dummy_number"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tempFeelsLike_Tv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tempFeelsLike_Tv"
+        app:layout_constraintTop_toBottomOf="@id/tempInfo_tv" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.01dp"
+        android:background="@color/white_trans"
+        android:layout_margin="@dimen/divider_margin"
+        app:layout_constraintTop_toBottomOf="@id/tempFeelsLike_Tv"
+        app:layout_constraintStart_toStartOf="@id/temp_Tv"
+        app:layout_constraintEnd_toEndOf="@+id/tempInfo_tv"
+        />
+
+    <TextView
+        android:id="@+id/minTemp_Tv"
+        android:layout_width="@dimen/match_constraint"
+        android:layout_height="wrap_content"
+        android:text="@string/minimum_temp"
+        android:layout_marginTop="@dimen/weather_detail_data_margin_top"
+        app:layout_constraintTop_toBottomOf="@id/tempFeelsLike_Tv"
+        app:layout_constraintStart_toStartOf="@id/temp_Tv"
+        app:layout_constraintEnd_toStartOf="@+id/minTempInfo_Tv" />
+
+    <TextView
+        android:id="@+id/minTempInfo_Tv"
+        android:layout_width="@dimen/match_constraint"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        tools:text="@string/dummy_number"
+        app:layout_constraintBaseline_toBaselineOf="@+id/minTemp_Tv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/minTemp_Tv"
+        app:layout_constraintTop_toBottomOf="@id/tempFeelsLike_info_Tv" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.01dp"
+        android:background="@color/white_trans"
+        android:layout_margin="@dimen/divider_margin"
+        app:layout_constraintTop_toBottomOf="@id/minTemp_Tv"
+        app:layout_constraintStart_toStartOf="@id/temp_Tv"
+        app:layout_constraintEnd_toEndOf="@+id/tempInfo_tv"
+        />
+
+    <TextView
+        android:id="@+id/maxTemp_Tv"
+        android:layout_width="@dimen/match_constraint"
+        android:layout_height="wrap_content"
+        android:text="@string/maximum_temp"
+        android:layout_marginTop="@dimen/weather_detail_data_margin_top"
+        app:layout_constraintTop_toBottomOf="@id/minTemp_Tv"
+        app:layout_constraintStart_toStartOf="@id/temp_Tv"
+        app:layout_constraintEnd_toStartOf="@+id/maxTempInfo_Tv" />
+
+    <TextView
+        android:id="@+id/maxTempInfo_Tv"
+        android:layout_width="@dimen/match_constraint"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        tools:text="@string/dummy_number"
+        app:layout_constraintBaseline_toBaselineOf="@+id/maxTemp_Tv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/maxTemp_Tv"
+        app:layout_constraintTop_toBottomOf="@id/minTempInfo_Tv" />
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.01dp"
+        android:background="@color/white_trans"
+        android:layout_margin="@dimen/divider_margin"
+        app:layout_constraintTop_toBottomOf="@id/maxTemp_Tv"
+        app:layout_constraintStart_toStartOf="@id/temp_Tv"
+        app:layout_constraintEnd_toEndOf="@+id/tempInfo_tv"
+        />
+
+
+    <TextView
+        android:id="@+id/humidity_Tv"
+        android:layout_width="@dimen/match_constraint"
+        android:layout_height="wrap_content"
+        android:text="@string/humidity"
+        android:layout_marginTop="@dimen/weather_detail_data_margin_top"
+        app:layout_constraintTop_toBottomOf="@id/maxTemp_Tv"
+        app:layout_constraintStart_toStartOf="@id/temp_Tv"
+        app:layout_constraintEnd_toStartOf="@+id/humidityInfo_Tv" />
+
+    <TextView
+        android:id="@+id/humidityInfo_Tv"
+        android:layout_width="@dimen/match_constraint"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        tools:text="@string/dummy_number"
+        app:layout_constraintBaseline_toBaselineOf="@+id/humidity_Tv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/humidity_Tv"
+        app:layout_constraintTop_toBottomOf="@id/maxTempInfo_Tv" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.01dp"
+        android:background="@color/white_trans"
+        android:layout_margin="@dimen/divider_margin"
+        app:layout_constraintTop_toBottomOf="@id/humidityInfo_Tv"
+        app:layout_constraintStart_toStartOf="@id/temp_Tv"
+        app:layout_constraintEnd_toEndOf="@+id/tempInfo_tv"
+        />
+
+    <TextView
+        android:id="@+id/wind_Tv"
+        android:layout_width="@dimen/match_constraint"
+        android:layout_height="wrap_content"
+        android:text="@string/wind_speed"
+        android:layout_marginTop="@dimen/weather_detail_data_margin_top"
+        app:layout_constraintTop_toBottomOf="@id/humidity_Tv"
+        app:layout_constraintStart_toStartOf="@id/temp_Tv"
+        app:layout_constraintEnd_toStartOf="@+id/windInfo_Tv" />
+
+    <TextView
+        android:id="@+id/windInfo_Tv"
+        android:layout_width="@dimen/match_constraint"
+        android:layout_height="wrap_content"
+        android:text="@string/temperature"
+        android:gravity="end"
+        app:layout_constraintBaseline_toBaselineOf="@+id/wind_Tv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/humidityInfo_Tv"
+        app:layout_constraintStart_toEndOf="@id/wind_Tv" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.01dp"
+        android:background="@color/white_trans"
+        android:layout_margin="@dimen/divider_margin"
+        app:layout_constraintTop_toBottomOf="@id/windInfo_Tv"
+        app:layout_constraintStart_toStartOf="@id/temp_Tv"
+        app:layout_constraintEnd_toEndOf="@+id/tempInfo_tv"
+        />
+
+    <TextView
+        android:id="@+id/pressure_Tv"
+        android:layout_width="@dimen/match_constraint"
+        android:layout_height="wrap_content"
+        android:text="@string/pressure"
+        android:layout_marginTop="@dimen/weather_detail_data_margin_top"
+        app:layout_constraintTop_toBottomOf="@id/wind_Tv"
+        app:layout_constraintStart_toStartOf="@id/temp_Tv"
+        app:layout_constraintEnd_toStartOf="@+id/pressureInfo_Tv" />
+
+    <TextView
+        android:id="@+id/pressureInfo_Tv"
+        android:layout_width="@dimen/match_constraint"
+        android:layout_height="wrap_content"
+        android:text="@string/temperature"
+        android:gravity="end"
+        app:layout_constraintBaseline_toBaselineOf="@+id/pressure_Tv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/windInfo_Tv"
+        app:layout_constraintStart_toEndOf="@id/pressure_Tv" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+    

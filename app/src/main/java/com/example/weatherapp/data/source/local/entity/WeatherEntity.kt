@@ -1,5 +1,6 @@
 package com.example.weatherapp.data.source.local.entity
 
+import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
@@ -15,8 +16,11 @@ class WeatherEntity(
     val windDeg: Double,
     val country: String,
     val city: String,
+    val feelsLike: Double,
+    val minTemperature: Double,
+    val maxTemperature: Double,
+    val pressure: Double,
     val windSpeed: Double
-    //   , val description: String,
-//    val main: String,
-//    val storeTimestamp: Long
 )
+
+

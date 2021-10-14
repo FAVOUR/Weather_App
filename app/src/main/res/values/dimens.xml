@@ -8,24 +8,39 @@
 
     <dimen name="city_item_image_height">125dp</dimen>
     <dimen name="landmark_corner_radius">12dp</dimen>
-    <dimen name="view_margin_start">10dp</dimen>
+
     <dimen name="temperature_text_size">40sp</dimen>
     <dimen name="weather_icon_width">30dp</dimen>
     <dimen name="weather_icon_height">30dp</dimen>
     <dimen name="card_margin_top">20dp</dimen>
 
 
+     <!-- Used Across Layouts -->
+    <dimen name="view_margin_start">10dp</dimen>
+    <dimen name="view_margin_end">10dp</dimen>
+    <dimen name="match_constraint">0dp</dimen>
+
+
+
     <!-- Weather List Header margin -->
     <dimen name="header_margin">24dp</dimen>
 
 
+
 <!--    Weather Details fragment-->
-<!--    &lt;!&ndash; Padding on the bottom of a screen so that the FAB won't overlap scrolled text. &ndash;&gt;-->
-<!--    <dimen name="fab_bottom_padding">72dp</dimen>-->
 
     <dimen name="weather_detail_app_bar_height">478dp</dimen>
     <dimen name="weather_detail_icon_width">70dp</dimen>
     <dimen name="weather_detail_icon_height">50dp</dimen>
+    <dimen name="weather_detail_icon_margin_top">90dp</dimen>
+    <dimen name="weather_detail_view_margin_top">8dp</dimen>
+    <dimen name="weather_detail_data_margin_top">32dp</dimen>
+    <dimen name="weather_details_sub_text_size">17sp</dimen>
+    <dimen name="weather_detail_des_text_size">20sp</dimen>
+    <dimen name="weather_detail_temp">40sp</dimen>
+    <dimen name="core_weather_details_text_size">18sp</dimen>
+    <dimen name="divider_margin">8dp</dimen>
 
 
+<!--    <item name="divider_height" type="dimen" format="float">0.1dp</item>-->
 </resources>

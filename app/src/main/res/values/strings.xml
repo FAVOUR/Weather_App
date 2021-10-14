@@ -3,4 +3,13 @@
     <string name="popular_landmark">Popular Landmark</string>
     <string name="image_icon">Image Icon</string>
     <string name="no_internet_message">Please check internet connection</string>
+    <string name="temperature">Temperature</string>
+    <string name="humidity">Humidity</string>
+    <string name="dummy_number">34.8</string>
+    <string name="temp_feels_like">Temp. Feels like</string>
+    <string name="min_temp">Min. Temp</string>
+    <string name="minimum_temp">Minimum Temp.</string>
+    <string name="maximum_temp">Maximum Temp.</string>
+    <string name="wind_speed">Wind Speed</string>
+    <string name="pressure">Pressure</string>
 </resources>

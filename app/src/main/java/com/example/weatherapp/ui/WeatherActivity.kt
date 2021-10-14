@@ -9,7 +9,7 @@ import com.example.weatherapp.ui.viewmodel.WeatherViewModel
 import com.example.weatherapp.ui.viewmodel.WeatherViewModelFactory
 import javax.inject.Inject
 
-class MainActivity : AppCompatActivity() {
+class WeatherActivity : AppCompatActivity() {
 
     @Inject
     lateinit var weatherViewModelFactory: WeatherViewModelFactory
@@ -22,6 +22,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         (this.application as WeatherApp).appComponent.inject(this)
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_weather)
     }
 }

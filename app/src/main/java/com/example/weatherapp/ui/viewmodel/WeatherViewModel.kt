@@ -15,6 +15,7 @@ import com.google.gson.Gson
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import javax.inject.Singleton
 
 class WeatherViewModel @Inject constructor(
     private val weatherRepository: WeatherRepository

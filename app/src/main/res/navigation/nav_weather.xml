@@ -14,9 +14,7 @@
             android:id="@+id/action_weather_fragment_to_weather_details_fragment"
             app:destination="@id/weather_detail_fragment" />
 
-        <argument
-            android:name="plantId"
-            app:argType="string"/>
+
 
     </fragment>
 
@@ -26,9 +24,9 @@
         android:name="com.example.weatherapp.WeatherDetailFragment"
         tools:layout="@layout/fragment_weather_detail">
 
-<!--        <action-->
-<!--            android:id="@+id/action_weather_fragment_to_weather_details_fragment"-->
-<!--            app:destination="@id/weather_detail_fragment" />-->
+        <argument
+            android:name="city"
+            app:argType="string"/>
 
 
     </fragment>
