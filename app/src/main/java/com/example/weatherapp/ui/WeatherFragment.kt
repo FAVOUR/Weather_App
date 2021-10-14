@@ -1,5 +1,6 @@
 package com.example.weatherapp.ui
 
+import android.R
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
@@ -17,8 +18,9 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.weatherapp.databinding.FragmentWeatherBinding
 import com.example.weatherapp.ui.adapter.WeatherAdapter
 import com.example.weatherapp.ui.model.WeatherData
-import com.example.weatherapp.ui.util.Extensions.reportInternetConnectivityOrTakeAction
+import com.example.weatherapp.ui.util.Extensions.TITLE
 import com.example.weatherapp.ui.util.Extensions.getAppInstance
+import com.example.weatherapp.ui.util.Extensions.reportInternetConnectivityOrTakeAction
 import com.example.weatherapp.ui.viewmodel.WeatherViewModel
 import com.example.weatherapp.ui.viewmodel.WeatherViewModelFactory
 import com.google.android.material.snackbar.Snackbar
@@ -51,64 +53,64 @@ class WeatherFragment : Fragment() {
 
 
         // show the spinner when [MainViewModel.displaySpinner] is true
-        viewModel.displaySpinner.observe(viewLifecycleOwner) { showSpinner ->
-            binding.spinner.visibility = if (showSpinner) View.VISIBLE else View.GONE
-        }
+        observeSpinnerData(binding)
 
-        // Show a snackbar whenever the [ViewModel.snackbarMessage] is updated a non-null value
-        viewModel.snackBarMessage.observe(viewLifecycleOwner) { text ->
-            text.getContentIfNotHandled()?.let {
-                Snackbar.make(binding.root, text.toString(), Snackbar.LENGTH_SHORT).show()
-            }
-        }
+        // Show a snackBar whenever the [ViewModel.snackBarMessage] is updated a non-null value
+        observeSnackBarMessage(binding)
 
         //Setup Adapter
-        val adapter = WeatherAdapter { weatherData, view ->
-            navigateToWeatherDetailFragment(weatherData = weatherData, view = view)
-        }
-        binding.weatherListRv.adapter = adapter
+        setupAdapter(binding)
 
-        subscribeUi(adapter,binding.swipeRefreshSl)
-
+        //Check for internet connectivity
         requireActivity().reportInternetConnectivityOrTakeAction()
 
-        binding.swipeRefreshSl.setOnRefreshListener {
+        //Setup swipe refresh listener
+        setupSwipeRefreshListener(binding)
 
-            requireActivity().updateWeather()
-
-
-        }
-        binding.swipeRefreshSl.setColorSchemeResources(
-            android.R.color.holo_blue_bright,
-            android.R.color.holo_green_light,
-            android.R.color.holo_orange_light,
-            android.R.color.holo_red_light
-        )
-
-//            binding.swipeRefreshSl.setOnRefreshListener(SwipeRefreshLayout.OnRefreshListener() {
-//                @Override
-//                public void onRefresh() {
-//                    // Your code to refresh the list here.
-//                    // Make sure you call swipeContainer.setRefreshing(false)
-//                    // once the network request has completed successfully.
-//                    fetchTimelineAsync(0);
-//                }
-//            });
-        // Configure the refreshing colors
-//        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
-//            android.R.color.holo_green_light,
-//            android.R.color.holo_orange_light,
-//            android.R.color.holo_red_light);
-//    }
-
+        binding.toolbarCtl.title = TITLE
 
         return binding.root
 
 
     }
 
+    private fun observeSpinnerData(binding: FragmentWeatherBinding) {
+        viewModel.displaySpinner.observe(viewLifecycleOwner) { showSpinner ->
+            binding.spinner.visibility = if (showSpinner) View.VISIBLE else View.GONE
+        }
+    }
 
-    private fun subscribeUi(adapter: WeatherAdapter,swipeRefreshLayout: SwipeRefreshLayout) {
+    private fun observeSnackBarMessage(binding: FragmentWeatherBinding) {
+        viewModel.snackBarMessage.observe(viewLifecycleOwner) { text ->
+            text.getContentIfNotHandled()?.let {
+                Snackbar.make(binding.root, text.toString(), Snackbar.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private fun setupAdapter(binding: FragmentWeatherBinding) {
+        val adapter = WeatherAdapter { weatherData, view ->
+            navigateToWeatherDetailFragment(weatherData = weatherData, view = view)
+        }
+        binding.weatherListRv.adapter = adapter
+
+        subscribeUi(adapter, binding.swipeRefreshSrl)
+    }
+
+    private fun setupSwipeRefreshListener(binding: FragmentWeatherBinding) {
+        binding.swipeRefreshSrl.setOnRefreshListener {
+            requireActivity().updateWeather()
+        }
+        binding.swipeRefreshSrl.setColorSchemeResources(
+            R.color.holo_blue_bright,
+            R.color.holo_green_light,
+            R.color.holo_orange_light,
+            R.color.holo_red_light
+        )
+    }
+
+
+    private fun subscribeUi(adapter: WeatherAdapter, swipeRefreshLayout: SwipeRefreshLayout) {
         // Start a coroutine in the lifecycle scope
         lifecycleScope.launch {
             // repeatOnLifecycle launches the block in a new coroutine every time the
@@ -122,13 +124,13 @@ class WeatherFragment : Fragment() {
 
                     //Stop swipe layout from refreshing if refreshing is ongoing
                     swipeRefreshLayout.apply {
-                        if(isRefreshing){
+                        if (isRefreshing) {
 
                             isRefreshing = false
                         }
                     }
 
-                     //Set Adapter data
+                    //Set Adapter data
                     adapter.submitList(weather)
                 }
             }
@@ -137,14 +139,12 @@ class WeatherFragment : Fragment() {
 
     private fun FragmentActivity.updateWeather() {
         Log.e("Triggered >>>>>", " Yeah ")
-
-        reportInternetConnectivityOrTakeAction{
+        reportInternetConnectivityOrTakeAction {
             viewModel.updateWeatherData()
         }
 
 
     }
-
 
 
     private fun navigateToWeatherDetailFragment(weatherData: WeatherData, view: View) {

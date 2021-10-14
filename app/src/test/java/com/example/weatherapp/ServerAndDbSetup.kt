@@ -1,9 +1,7 @@
 package com.example.weatherapp
 
 import android.content.Context
-import androidx.room.Dao
 import androidx.room.Room
-import androidx.room.RoomDatabase
 import androidx.test.core.app.ApplicationProvider
 import com.example.weatherapp.data.source.local.dao.WeatherDao
 import com.example.weatherapp.data.source.local.db.WeatherDatabase
@@ -17,21 +15,22 @@ open class ServerAndDbSetup {
 
 //    "http://127.0.0.1:8080"
 
-    val mockWebServer =MockWebServer()
+    val mockWebServer = MockWebServer()
     private lateinit var weatherDatabase: WeatherDatabase
     internal lateinit var weatherDao: WeatherDao
-    val dummyEntityData:WeatherEntity =getWeatherEntity()
+    val dummyEntityData: WeatherEntity = getWeatherEntity()
 
     @Before
-    fun setup(){
+    fun setup() {
         mockWebServer.start(8080)
-        mockWebServer.dispatcher=MockDispatchers()
+        mockWebServer.dispatcher = MockDispatchers()
 
         val context = ApplicationProvider.getApplicationContext<Context>()
-        weatherDatabase=  Room.databaseBuilder(context, WeatherDatabase::class.java, BuildConfig.DATABASE_NAME)
-                               .allowMainThreadQueries()
-                                .build()
-        weatherDao=weatherDatabase.weatherDao()
+        weatherDatabase =
+            Room.databaseBuilder(context, WeatherDatabase::class.java, BuildConfig.DATABASE_NAME)
+                .allowMainThreadQueries()
+                .build()
+        weatherDao = weatherDatabase.weatherDao()
 
 
         //Given data inserted into the database
@@ -40,25 +39,30 @@ open class ServerAndDbSetup {
 
     @After
     @Throws(IOException::class)
-    fun teardown (){
+    fun teardown() {
         mockWebServer.shutdown()
         weatherDatabase.close()
     }
 
 
-    fun getWeatherEntity():WeatherEntity{
+    fun getWeatherEntity(): WeatherEntity {
 
-        return WeatherEntity(id = 1,
+        return WeatherEntity(
+            id = 1,
             temp = 1.4,
-            humidity=10,
-            weatherDescription ="Foggy",
+            humidity = 10,
+            weatherDescription = "Foggy",
             weatherId = 12,
             weatherIcon = "12n",
             windDeg = 45.7,
             country = "Ke",
             city = "Kenya",
-            windSpeed = 6.9
-            )
+            windSpeed = 6.9,
+            feelsLike = 56.8,
+            minTemperature = 54.6,
+            maxTemperature = 56.4,
+            pressure = 5.8
+        )
     }
 
 

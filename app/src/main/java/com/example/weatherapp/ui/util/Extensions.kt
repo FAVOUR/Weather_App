@@ -22,6 +22,7 @@ object Extensions {
     private const val IMAGE_SUFFIX_PNG = ".png"
     private const val TEMPERATURE_DEGREE = '\u00B0'
     const val TEMPERATURE_UNIT_METRIC = "metric"
+    const val TITLE = "Weather Report"
 
     //Cities
     const val KENYA = "Kenya"
@@ -172,7 +173,7 @@ object Extensions {
                 isShow = true
             } else if (isShow) {
 
-               // display data when the view is not collapsed
+                // display data when the view is not collapsed
                 collapsingToolbarLayout.title =
                     dataWhenNotCollapsed
                 isShow = false
@@ -181,7 +182,7 @@ object Extensions {
     }
 
 
-    fun FragmentActivity.reportInternetConnectivityOrTakeAction(action:(()->Unit)?=null) {
+    fun FragmentActivity.reportInternetConnectivityOrTakeAction(action: (() -> Unit)? = null) {
 
         if (isNetworkConnected()) {
             action?.invoke()

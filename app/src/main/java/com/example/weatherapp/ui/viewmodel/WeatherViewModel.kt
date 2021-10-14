@@ -51,12 +51,6 @@ class WeatherViewModel @Inject constructor(
     // The UI collects from this StateFlow to get its state updates
     val uiState: StateFlow<List<WeatherData>?> = _uiState
 
-    // Backing property to avoid state updates from other classes
-    private val _isNetworkRequestOngoing = MutableStateFlow<Boolean>(false)
-
-    // The UI collects from this StateFlow to know if a network request has been triggered
-    //this comes handy during configuration changes
-    val isNetworkRequestOngoing: StateFlow<Boolean> = _isNetworkRequestOngoing
 
 
     /**
@@ -109,7 +103,6 @@ class WeatherViewModel @Inject constructor(
 
     fun updateWeatherData() {
 
-        Log.e("Triggered >>>>>", " Yeah ")
 
         viewModelScope.launch {
 
@@ -132,7 +125,7 @@ class WeatherViewModel @Inject constructor(
 
                     when (response) {
                         is ResponseFromServer.Success -> {
-                            Log.e("Query successful", Gson().toJson(response.data))
+
                             weatherRepository.insertWeatherData(response.data.toDataBaseModel())
                         }
                         is ResponseFromServer.Error -> {

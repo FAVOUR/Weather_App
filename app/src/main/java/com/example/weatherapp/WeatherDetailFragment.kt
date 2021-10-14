@@ -39,6 +39,7 @@ class WeatherDetailFragment : Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
+//        (requireActivity().application as WeatherApp).appComponent.inject(this)
         requireActivity().getAppInstance().appComponent.inject(this)
     }
 
@@ -77,7 +78,7 @@ class WeatherDetailFragment : Fragment() {
 
         weatherData?.let {
             displayCollapsingToolBarTitle(
-                appBarLayout = binding.appbar,
+                appBarLayout = binding.appbarAbl,
                 collapsingToolbarLayout = binding.toolbarLayout,
                 dataWhenCollapsed = getLocation(it),
                 dataWhenNotCollapsed = ""

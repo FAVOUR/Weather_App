@@ -10,20 +10,18 @@ interface WeatherDao {
 
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertWeatherData(weatherDataList:WeatherEntity)
-//    fun insertWeatherData(weatherDataList:  List<WeatherEntity>)
+    fun insertWeatherData(weatherDataList: WeatherEntity)
 
     @Update
-    fun updateWeatherData(weatherDataList:  List<WeatherEntity>)
+    fun updateWeatherData(weatherDataList: List<WeatherEntity>)
 
 
-    @Query("SELECT * from weatherentity")
+    @Query("SELECT * from weatherentity ORDER by country ASC")
     fun getAllWeatherData(): Flow<List<WeatherEntity>>
 
 
     @Query("DELETE FROM weatherentity")
-     suspend fun deleteAllWeatherData()
-
+    suspend fun deleteAllWeatherData()
 
 
 }

@@ -10,14 +10,12 @@ interface WeatherService {
      * Get current weather of city
      *
      * @param q     String name of city
-//     * @param units String units of response
-//     * @param lang  String language of response
      * @param appId String api key
      * @return instance of [WeatherReport]
      */
 
     @GET("weather")
-   suspend fun getCurrentWeather(
+    suspend fun getCurrentWeather(
         @Query("q") q: String?,
         @Query("units") units: String?,
         @Query("appid") appId: String?

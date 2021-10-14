@@ -7,18 +7,18 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class DefaultLocalDataSource @Inject constructor(private val weatherDao: WeatherDao):LocalDataSource {
+class DefaultLocalDataSource @Inject constructor(private val weatherDao: WeatherDao) :
+    LocalDataSource {
     override fun getWeatherReports(): Flow<List<WeatherEntity>> {
-       return weatherDao.getAllWeatherData()
+        return weatherDao.getAllWeatherData()
     }
 
     override suspend fun saveWeatherReports(allWeatherReports: WeatherEntity) {
-         weatherDao.insertWeatherData(weatherDataList = allWeatherReports)
+        weatherDao.insertWeatherData(weatherDataList = allWeatherReports)
     }
 
 
-
     override suspend fun deleteAllWeatherReport() {
-      weatherDao.deleteAllWeatherData()
+        weatherDao.deleteAllWeatherData()
     }
 }

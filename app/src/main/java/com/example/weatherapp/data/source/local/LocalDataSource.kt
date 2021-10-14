@@ -9,6 +9,5 @@ interface LocalDataSource {
 
     suspend fun saveWeatherReports(allWeatherReports: WeatherEntity)
 
-
     suspend fun deleteAllWeatherReport()
 }

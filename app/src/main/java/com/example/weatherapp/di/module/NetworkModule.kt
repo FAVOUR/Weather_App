@@ -14,7 +14,7 @@ import javax.inject.Singleton
 import kotlin.coroutines.CoroutineContext
 
 @Module
-class NetworkModule{
+class NetworkModule {
 
 
     @Provides
@@ -36,13 +36,13 @@ class NetworkModule{
 
     @Singleton
     @Provides
-    fun provideCoroutineContext():CoroutineContext{
+    fun provideCoroutineContext(): CoroutineContext {
         return Dispatchers.IO
     }
 
     @Singleton
     @Provides
-    fun provideRetrofitInstance(okHttpClient: OkHttpClient):Retrofit{
+    fun provideRetrofitInstance(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
             .baseUrl(BuildConfig.BASEURL)
             .addConverterFactory(GsonConverterFactory.create())
@@ -52,7 +52,7 @@ class NetworkModule{
 
     @Singleton
     @Provides
-    fun provideWeatherServices(retrofit: Retrofit):WeatherService{
+    fun provideWeatherServices(retrofit: Retrofit): WeatherService {
         return retrofit.create(WeatherService::class.java)
     }
 

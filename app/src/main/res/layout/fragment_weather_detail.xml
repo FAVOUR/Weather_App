@@ -10,7 +10,7 @@
     tools:context=".WeatherDetailFragment">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appbar"
+        android:id="@+id/appbar_Abl"
         android:layout_width="match_parent"
         android:layout_height="@dimen/weather_detail_app_bar_height"
         android:animateLayoutChanges="true"
@@ -23,9 +23,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
-            app:contentScrim="@color/weather_detail_color"
+            app:contentScrim="@color/purple_500"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            app:statusBarScrim="@color/weather_detail_color"
+            app:statusBarScrim="@color/purple_500"
             app:toolbarId="@id/toolbar">
 
             <com.google.android.material.appbar.MaterialToolbar
@@ -39,7 +39,7 @@
             <include
                 android:id="@+id/weather_summary"
                 layout="@layout/weather_detail_top_view"
-                app:layout_anchor="@+id/appbar"
+                app:layout_anchor="@+id/appbar_Abl"
                 app:layout_anchorGravity="center"
                 app:layout_collapseMode="parallax" />
 

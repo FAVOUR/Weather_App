@@ -10,7 +10,7 @@ import dagger.Provides
 import javax.inject.Singleton
 
 @Module
-class DataBaseModule(private val application: Application)  {
+class DataBaseModule(private val application: Application) {
 
     @Singleton
     @Provides
@@ -21,8 +21,12 @@ class DataBaseModule(private val application: Application)  {
 
     @Singleton
     @Provides
-    fun provideDataBase():WeatherDatabase{
-        return Room.databaseBuilder(application, WeatherDatabase::class.java, BuildConfig.DATABASE_NAME)
+    fun provideDataBase(): WeatherDatabase {
+        return Room.databaseBuilder(
+            application,
+            WeatherDatabase::class.java,
+            BuildConfig.DATABASE_NAME
+        )
             .fallbackToDestructiveMigration()
             .build()
     }

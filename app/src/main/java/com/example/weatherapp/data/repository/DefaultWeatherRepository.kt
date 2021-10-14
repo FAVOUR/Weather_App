@@ -1,14 +1,11 @@
 package com.example.weatherapp.data.repository
 
-import android.util.Log
 import com.example.weatherapp.data.source.local.LocalDataSource
 import com.example.weatherapp.data.source.local.entity.WeatherEntity
 import com.example.weatherapp.data.source.remote.RemoteDataSource
 import com.example.weatherapp.data.source.remote.helper.ResponseFromServer
 import com.example.weatherapp.data.source.remote.helper.SafeApiCall
 import com.example.weatherapp.data.source.remote.model.WeatherReport
-import com.google.gson.Gson
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.withContext
@@ -19,7 +16,7 @@ import kotlin.coroutines.CoroutineContext
 class DefaultWeatherRepository @Inject constructor(
     private val remoteDataSource: RemoteDataSource,
     private val localDataSource: LocalDataSource,
-    private val dispatchers:CoroutineContext
+    private val dispatchers: CoroutineContext
 ) : WeatherRepository {
 
     override fun getCurrentWeather(): Flow<List<WeatherEntity>> {

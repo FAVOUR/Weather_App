@@ -12,10 +12,10 @@ import javax.inject.Singleton
 abstract class DataSourceModule {
     @Singleton
     @Binds
-    abstract fun bindRemoteDataSourceModule(defaultRemoteDataSource: DefaultRemoteDataSource):RemoteDataSource
+    abstract fun bindRemoteDataSourceModule(defaultRemoteDataSource: DefaultRemoteDataSource): RemoteDataSource
 
     @Singleton
     @Binds
-    abstract fun bindLocalDataSource(defaultLocalDataSource: DefaultLocalDataSource):LocalDataSource
+    abstract fun bindLocalDataSource(defaultLocalDataSource: DefaultLocalDataSource): LocalDataSource
 
 }

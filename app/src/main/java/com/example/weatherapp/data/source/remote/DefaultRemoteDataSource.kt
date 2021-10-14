@@ -14,13 +14,11 @@ class DefaultRemoteDataSource @Inject constructor(
 
     override suspend fun getCurrentDataResource(city: String): Response<WeatherReport> {
 
-//        return withContext(Dispatchers.IO) {
         return weatherService.getCurrentWeather(
             appId = BuildConfig.WEATHER_API_KEY,
             q = city,
             units = TEMPERATURE_UNIT_METRIC
         )
-//        }
 
     }
 

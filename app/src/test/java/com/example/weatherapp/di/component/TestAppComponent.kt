@@ -13,7 +13,7 @@ import javax.inject.Singleton
         ViewModelModule::class
     ]
 )
-interface TestAppComponent:AppComponent {
+interface TestAppComponent : AppComponent {
 
     fun inject(weatherTestApp: WeatherTestApp)
 

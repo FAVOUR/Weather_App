@@ -2,28 +2,28 @@ package com.example.weatherapp.data.source.remote.model
 
 import com.google.gson.annotations.SerializedName
 
-class Main (
+class Main(
     @SerializedName("temp")
-    val temp:Double,
+    val temp: Double,
 
     @SerializedName("temp_min")
-    val tempMin :Double,
+    val tempMin: Double,
 
     @SerializedName("feels_like")
-    val feelsLike :Double,
+    val feelsLike: Double,
 
     @SerializedName("grnd_level")
-    val grndLevel:Double,
+    val grndLevel: Double,
 
     @SerializedName("humidity")
-    val humidity:Int ,
+    val humidity: Int,
 
     @SerializedName("pressure")
-    val pressure:Double,
+    val pressure: Double,
 
     @SerializedName("sea_level")
-    val seaLevel :Double,
+    val seaLevel: Double,
 
     @SerializedName("temp_max")
-    val tempMax:Double,
+    val tempMax: Double,
 )

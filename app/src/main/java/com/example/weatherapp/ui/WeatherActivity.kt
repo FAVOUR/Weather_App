@@ -1,10 +1,10 @@
 package com.example.weatherapp.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
-import com.example.weatherapp.WeatherApp
+import androidx.appcompat.app.AppCompatActivity
 import com.example.weatherapp.R
+import com.example.weatherapp.WeatherApp
 import com.example.weatherapp.ui.viewmodel.WeatherViewModel
 import com.example.weatherapp.ui.viewmodel.WeatherViewModelFactory
 import javax.inject.Inject

@@ -7,7 +7,6 @@ import com.example.weatherapp.di.module.DataBaseModule
 
 class WeatherTestApp:WeatherApp() {
 
-//    val builder = Dagg
 
 //    override fun initialiseAppComponent():AppComponent{
 //
