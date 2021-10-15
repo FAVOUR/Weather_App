@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -19,20 +17,19 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <!-- TODO remove the hardcoded image -->
         <ImageView
             android:id="@+id/landmark_photo"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/match_constraint"
             android:layout_height="@dimen/city_item_image_height"
             android:contentDescription="@string/popular_landmark"
             android:scaleType="centerCrop"
-
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
 
             />
+
         <ImageView
             android:id="@+id/weatherIcon_Iv"
             android:layout_width="@dimen/weather_icon_width"
@@ -55,26 +52,32 @@
 
         <TextView
             android:id="@+id/temperature_Tv"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/match_constraint"
             android:layout_height="15dp"
             android:layout_marginStart="@dimen/view_margin_start"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="@dimen/margin_bottom"
             android:textColor="@color/white"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintRight_toLeftOf="@id/cityAndCountry_Tv"
+            app:layout_constraintEnd_toStartOf="@id/cityAndCountry_Tv"
+            app:layout_constraintHorizontal_weight="3"
             app:layout_constraintStart_toStartOf="parent"
-            tools:text="69.889\u00B0" />
+            tools:text="69.6\u00B0" />
 
         <TextView
             android:id="@+id/cityAndCountry_Tv"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/match_constraint"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/view_margin_start"
             android:layout_marginEnd="@dimen/view_margin_start"
+            android:gravity="end"
+            android:maxLines="1"
             android:textColor="@color/white"
             app:layout_constraintBaseline_toBaselineOf="@+id/temperature_Tv"
             app:layout_constraintEnd_toEndOf="parent"
-            tools:text="Lagos,Nigeria" />
+            app:layout_constraintHorizontal_weight="9"
+            app:layout_constraintStart_toEndOf="@id/temperature_Tv"
+            tools:text="Lagos,Ng" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

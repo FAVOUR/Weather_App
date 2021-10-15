@@ -6,7 +6,7 @@ The final app looks like this:
 
 ### Prerequisites
 
-Before running this app,check to confirm there is a file named apikeys.properties else if not found please create , in a file named "apikeys.properties" and add it to the project level files and then add the keys using same format sa shown below
+Before running this app,check to confirm there is a file named apikeys.properties else if not found please, create a file named "apikeys.properties", add to the project level files and then add the keys using same format same as  shown below:
 
 ```yaml
 eg.

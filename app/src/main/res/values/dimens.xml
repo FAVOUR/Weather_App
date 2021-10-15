@@ -41,6 +41,7 @@
     <dimen name="core_weather_details_text_size">18sp</dimen>
     <dimen name="divider_margin">8dp</dimen>
     <dimen name="swipe_refresh_margin_top">40dp</dimen>
+    <dimen name="margin_bottom">8dp</dimen>
 
 
     <!--    <item name="divider_height" type="dimen" format="float">0.1dp</item>-->
