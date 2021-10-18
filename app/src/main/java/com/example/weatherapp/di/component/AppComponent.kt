@@ -16,7 +16,6 @@ interface AppComponent {
 
     @Component.Factory
     interface Factory{
-        //Read about factory method
         fun create(@BindsInstance application: Application):AppComponent
     }
 

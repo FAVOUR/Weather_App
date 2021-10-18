@@ -1,4 +1,3 @@
-
 The final app looks like this:
 
 <p align="center"><img src="assets/screen2.png" /></p>
@@ -16,11 +15,25 @@ WEATHER_API_KEY ="XXXXXXXX"
 ### Background
 
 Design a two-page mobile weather application detailing the weather information for  cities in the table below
-
  Page One:
   should contain a grid or list showing all the cities in the table below with  Images / Icon to represent each city. Add extra information on each item in the grid  such as name of city, country of city, weather forecast for city and any other  information as deemed fit.
  Page two:
   this should contain a detailed weather report of the selected city in page  one above. A user should be able to select any city in page one and Page two should  display the weather forecast for the selected city.
+
+
+## System design Approach,
+    * The app uses the single activity approach and uses Jetpack navigation to navigate across screen.
+    * The WeatherApp class contains an instance of the Dagger component and the a method which can be overridden in the test sourceSet inorder to setup dagger [WeatherTest App]
+    * The WeatherFragment class contains the home page which is seen on launch of the application. The application uses flow to get the stream of data asynchronously and stores it to the Room database which serves as a single source of truth for the UI,
+    * The Data (Remote and local) and UI packages have their models and communication between the packages are achieved by using mappers to convert form one model to the other.Design patterns used where singleton,Factory and Builder design patterns
+    * The setup for testing(End to End,UI,Integration and Unit test where done), and a few unit test where written
+    * The user can also refresh the Weather Updates
+
+
+## Further improvement to the design
+    * Write more tests
+    * Add Test coverage dependency (Jacoco) and setup
+    * Add more comments and Setup (Dokka) for the purpose of documentation
 
 ## Tech-stack
 
@@ -28,13 +41,20 @@ Design a two-page mobile weather application detailing the weather information f
     * [Kotlin](https://kotlinlang.org/) - a cross-platform, statically typed, general-purpose programming language with type inference.
     * [Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html) - perform background operations.
     * [Flow](https://kotlinlang.org/docs/reference/coroutines/flow.html) - handle the stream of data asynchronously that executes sequentially.
+    * [Dagger](https://github.com/google/dagger) - handles dependency injection
+    * [ViewBinding](https://developer.android.com/topic/libraries/view-binding) - feature that allows you to more easily write code that interacts with views
+    * [Parcelable](https://developer.android.com/kotlin/parcelize) - Plugin provides a Parcelable implementation generator.
     * [Jetpack](https://developer.android.com/jetpack)
         * [Room](https://developer.android.com/topic/libraries/architecture/room) - a persistence library provides an abstraction layer over SQLite.
         * [LiveData](https://developer.android.com/topic/libraries/architecture/livedata) - is an observable data holder.
         * [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) - store and manage UI-related data in a lifecycle conscious way.
+        * [Navigation component](https://developer.android.com/guide/navigation)- helps to implement navigation.
+        * [Android KTX](https://developer.android.com/kotlin/ktx)- Provides concise, idiomatic Kotlin to Jetpack, Android platform, and other APIs.
+
 
 * Architecture
     * MVVM - Model View View Model
+
 * Tests
     * [Unit Tests](https://en.wikipedia.org/wiki/Unit_testing) ([JUnit](https://junit.org/junit4/)) - a simple framework to write repeatable tests.
     * [Truth](https://github.com/google/truth) - Assertion library
