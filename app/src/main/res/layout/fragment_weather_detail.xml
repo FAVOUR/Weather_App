@@ -7,7 +7,7 @@
     android:fitsSystemWindows="true"
     android:theme="@style/Theme.WeatherApp.WeatherDetail"
     android:id="@+id/coordinatorLayout"
-    tools:context=".WeatherDetailFragment">
+    tools:context=".ui.fragment.WeatherDetailFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar_Abl"

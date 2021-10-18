@@ -1,4 +1,4 @@
-package com.example.weatherapp.ui
+package com.example.weatherapp.ui.fragment
 
 import android.R
 import android.content.Context
@@ -76,6 +76,8 @@ class WeatherFragment : Fragment() {
 
     private fun observeSpinnerData(binding: FragmentWeatherBinding) {
         viewModel.displaySpinner.observe(viewLifecycleOwner) { showSpinner ->
+
+            Log.e("showSpinner",showSpinner.toString())
             binding.spinner.visibility = if (showSpinner) View.VISIBLE else View.GONE
         }
     }
