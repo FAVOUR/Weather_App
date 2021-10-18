@@ -10,13 +10,14 @@ import javax.inject.Named
 import javax.inject.Singleton
 
 @Module
-class DataBaseModuleTest(val application: Application) {
+//class DataBaseModuleTest(val application: Application) {
+class DataBaseModuleTest() {
 
 
     @Singleton
     @Provides
     @Named("test_database")
-    fun provideDataBase(): WeatherDatabase {
+    fun provideDataBase(application:Application): WeatherDatabase {
         return Room.databaseBuilder(
             application,
             WeatherDatabase::class.java,
