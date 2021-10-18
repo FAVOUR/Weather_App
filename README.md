@@ -15,13 +15,16 @@ WEATHER_API_KEY ="XXXXXXXX"
 ### Background
 
 Design a two-page mobile weather application detailing the weather information for  cities in the table below
- Page One:
+
+ * Page One:
   should contain a grid or list showing all the cities in the table below with  Images / Icon to represent each city. Add extra information on each item in the grid  such as name of city, country of city, weather forecast for city and any other  information as deemed fit.
- Page two:
+
+ * Page two:
   this should contain a detailed weather report of the selected city in page  one above. A user should be able to select any city in page one and Page two should  display the weather forecast for the selected city.
 
 
-## System design Approach,
+## System design Approach
+
     * The app uses the single activity approach and uses Jetpack navigation to navigate across screen.
     * The WeatherApp class contains an instance of the Dagger component and the a method which can be overridden in the test sourceSet inorder to setup dagger [WeatherTest App]
     * The WeatherFragment class contains the home page which is seen on launch of the application. The application uses flow to get the stream of data asynchronously and stores it to the Room database which serves as a single source of truth for the UI,
