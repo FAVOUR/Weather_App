@@ -120,7 +120,7 @@ class WeatherFragment : Fragment() {
                 // Note that this happens when lifecycle is STARTED and stops
                 // collecting when the lifecycle is STOPPED
                 viewModel.uiState.collect { weather ->
-                    Log.e("viewModel.uiState", Gson().toJson(weather))
+//                    Log.e("viewModel.uiState", Gson().toJson(weather))
 
                     //Stop swipe layout from refreshing if refreshing is ongoing
                     swipeRefreshLayout.apply {
@@ -138,7 +138,7 @@ class WeatherFragment : Fragment() {
     }
 
     private fun FragmentActivity.updateWeather() {
-        Log.e("Triggered >>>>>", " Yeah ")
+//        Log.e("Triggered >>>>>", " Yeah ")
         reportInternetConnectivityOrTakeAction {
             viewModel.updateWeatherData()
         }

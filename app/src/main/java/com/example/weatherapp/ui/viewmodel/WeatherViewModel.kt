@@ -83,7 +83,7 @@ class WeatherViewModel @Inject constructor(
         viewModelScope.launch {
             weatherRepository.getCurrentWeather()
                 .map {
-                    Log.e("Data from DB", Gson().toJson(it))
+//                    Log.e("Data from DB", Gson().toJson(it))
                     it.map { weatherEntity -> weatherEntity.toUiModel() }
                 }
                 .catch { throwable -> _snackBarMessage.value = Event(throwable.message) }
