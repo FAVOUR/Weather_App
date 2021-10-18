@@ -121,7 +121,7 @@ class WeatherDetailFragment : Fragment() {
 
             weatherData.also {
 
-                tempInfoTv.text = it.temperature.toString()
+                tempInfoTv.text = formatTemperature(it.temperature)
 
             }.coreWeatherDetails.also {
 

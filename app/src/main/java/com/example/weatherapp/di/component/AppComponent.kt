@@ -2,10 +2,10 @@ package com.example.weatherapp.di.component
 
 import android.app.Application
 import android.content.Context
-import com.example.weatherapp.WeatherDetailFragment
 import com.example.weatherapp.di.module.*
-import com.example.weatherapp.ui.WeatherActivity
-import com.example.weatherapp.ui.WeatherFragment
+import com.example.weatherapp.ui.activity.WeatherActivity
+import com.example.weatherapp.ui.fragment.WeatherDetailFragment
+import com.example.weatherapp.ui.fragment.WeatherFragment
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
