@@ -16,7 +16,8 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+//        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.example.weatherapp.WeatherTestApp"
 
        android {
            sourceSets {
@@ -111,6 +112,8 @@ android {
         /*Dependency Injection*/
         implementation "com.google.dagger:dagger:$dagger_version"
         kapt "com.google.dagger:dagger-compiler:$dagger_version"
+        implementation "com.google.dagger:dagger-android-support:$dagger_version"
+        kapt "com.google.dagger:dagger-android-processor:$dagger_version"
 
 
         //Testing across all sourcesets

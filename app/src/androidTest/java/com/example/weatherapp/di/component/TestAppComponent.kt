@@ -1,7 +1,9 @@
 package com.example.weatherapp.di.component
 
-import com.example.weatherapp.WeatherTestApp
+import android.app.Application
+import com.example.weatherapp.di.WeatherTestApp
 import com.example.weatherapp.di.module.*
+import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
 
@@ -14,6 +16,12 @@ import javax.inject.Singleton
     ]
 )
 interface TestAppComponent : AppComponent {
+
+    @Component.Factory
+    interface Factory{
+        //Read about factory method
+        fun create(@BindsInstance application: Application):AppComponent
+    }
 
     fun inject(weatherTestApp: WeatherTestApp)
 

@@ -1,6 +1,7 @@
 package com.example.weatherapp
 
 import androidx.test.platform.app.InstrumentationRegistry
+import com.example.weatherapp.di.WeatherTestApp
 import java.io.IOException
 import java.io.InputStreamReader
 

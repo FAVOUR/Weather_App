@@ -16,8 +16,8 @@ class NetworkModuleTest {
 
     @Singleton
     @Provides
-    @Named("test_database")
-    fun provideWeatherDatabase(client: OkHttpClient): Retrofit {
+    @Named("test_retrofitInstance")
+    fun provideRetrofitInstance(client: OkHttpClient): Retrofit {
         val mockWebServer = MockWebServer()
         mockWebServer.start(8080)
         mockWebServer.dispatcher = MockDispatchers()

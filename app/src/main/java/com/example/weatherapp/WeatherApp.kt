@@ -11,10 +11,10 @@ open class WeatherApp : Application() {
         initialiseAppComponent()
     }
 
-     fun initialiseAppComponent(): AppComponent {
-        val builder = DaggerAppComponent.builder()
-        return builder.dataBaseModule(DataBaseModule(this))
-            .build()
+    open fun initialiseAppComponent(): AppComponent {
+        val builder = DaggerAppComponent.factory()
+        return builder.create(this)
+
     }
 
 }
