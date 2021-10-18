@@ -27,6 +27,8 @@ Design a two-page mobile weather application detailing the weather information f
     * The WeatherFragment class contains the home page which is seen on launch of the application. The application uses flow to get the stream of data asynchronously and stores it to the Room database which serves as a single source of truth for the UI,
     * The Data (Remote and local) and UI packages have their models and communication between the packages are achieved by using mappers to convert form one model to the other.Design patterns used where singleton,Factory and Builder design patterns
     * The setup for testing(End to End,UI,Integration and Unit test where done), and a few unit test where written
+    * The user can also refresh the Weather Updates
+
 
 ## Further improvement to the design
     * Write more tests
@@ -45,8 +47,12 @@ Design a two-page mobile weather application detailing the weather information f
         * [LiveData](https://developer.android.com/topic/libraries/architecture/livedata) - is an observable data holder.
         * [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) - store and manage UI-related data in a lifecycle conscious way.
         * [Navigation component](https://developer.android.com/guide/navigation)- helps to implement navigation.
+        * [Android KTX](https://developer.android.com/kotlin/ktx)- Provides concise, idiomatic Kotlin to Jetpack, Android platform, and other APIs.
+
+
 * Architecture
     * MVVM - Model View View Model
+
 * Tests
     * [Unit Tests](https://en.wikipedia.org/wiki/Unit_testing) ([JUnit](https://junit.org/junit4/)) - a simple framework to write repeatable tests.
     * [Truth](https://github.com/google/truth) - Assertion library
