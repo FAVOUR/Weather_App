@@ -23,7 +23,7 @@ Design a two-page mobile weather application detailing the weather information f
   this should contain a detailed weather report of the selected city in page  one above. A user should be able to select any city in page one and Page two should  display the weather forecast for the selected city.
 
 
-## System design Approach
+### System design Approach
 
     * The app uses the single activity approach and uses Jetpack navigation to navigate across screen.
     * The WeatherApp class contains an instance of the Dagger component and the a method which can be overridden in the test sourceSet inorder to setup dagger [WeatherTest App]
@@ -33,7 +33,7 @@ Design a two-page mobile weather application detailing the weather information f
     * The user can also refresh the Weather Updates
 
 
-## Further improvement to the design
+### Further improvement to the design
     * Write more tests
     * Add Test coverage dependency (Jacoco) and setup
     * Add more comments and Setup (Dokka) for the purpose of documentation
