@@ -1,7 +1,6 @@
 package com.example.weatherapp.data.source.remote
 
 import com.example.weatherapp.KENYA
-import com.example.weatherapp.ServerAndDbSetup
 import kotlinx.coroutines.runBlocking
 import org.hamcrest.CoreMatchers
 import org.hamcrest.MatcherAssert

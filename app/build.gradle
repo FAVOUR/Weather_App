@@ -132,6 +132,11 @@ android {
         testImplementation "androidx.arch.core:core-testing:2.1.0"
         testImplementation "com.google.truth:truth:0.42"
         testImplementation "com.squareup.okhttp3:mockwebserver:4.6.0"
+        testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.0"
+
+        
+        // Used across all test
+        implementation 'androidx.test:runner:1.4.0'
 
 
         
@@ -156,8 +161,10 @@ android {
 
 
 }
-
-
+//
+//dependencies {
+//
+//}
 
 
 //android.applicationVariants.all {
