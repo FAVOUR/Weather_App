@@ -5,5 +5,5 @@ import retrofit2.Response
 
 interface RemoteDataSource {
 
-    suspend fun getCurrentDataResource(city: String): Response<WeatherReport>
+    suspend fun getWeatherData(city: String): Response<WeatherReport>
 }

@@ -12,7 +12,7 @@ class DefaultRemoteDataSource @Inject constructor(
 ) : RemoteDataSource {
 
 
-    override suspend fun getCurrentDataResource(city: String): Response<WeatherReport> {
+    override suspend fun getWeatherData(city: String): Response<WeatherReport> {
 
         return weatherService.getCurrentWeather(
             appId = BuildConfig.WEATHER_API_KEY,

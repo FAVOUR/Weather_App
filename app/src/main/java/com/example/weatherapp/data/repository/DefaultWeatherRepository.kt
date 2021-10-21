@@ -31,7 +31,7 @@ class DefaultWeatherRepository @Inject constructor(
                 flow {
                     val request: SafeApiCall<WeatherReport> =
                         SafeApiCall(networkRequest = {
-                            remoteDataSource.getCurrentDataResource(
+                            remoteDataSource.getWeatherData(
                                 city = it
                             )
                         })
