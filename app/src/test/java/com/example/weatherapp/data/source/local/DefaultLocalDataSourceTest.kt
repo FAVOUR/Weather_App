@@ -6,6 +6,8 @@ import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
+import androidx.test.filters.MediumTest
+import androidx.test.filters.SmallTest
 import com.example.weatherapp.BuildConfig
 import com.example.weatherapp.KENYA
 import com.example.weatherapp.data.source.local.dao.WeatherDao
@@ -23,12 +25,11 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.robolectric.RobolectricTestRunner
 
 
-//@RunWith(RobolectricTestRunner::class)
-
-@RunWith(AndroidJUnit4::class)
-@LargeTest
+@RunWith(RobolectricTestRunner::class)
+@MediumTest
 class DefaultLocalDataSourceTest{
 
     private lateinit var weatherDatabase:WeatherDatabase
@@ -69,17 +70,27 @@ class DefaultLocalDataSourceTest{
         val result:List<WeatherEntity> = defaultDataSource.getWeatherReports().first()
 
         //Assert that the country is kenya
-        MatcherAssert.assertThat( result[0].country, CoreMatchers.equalTo(KENYA))
+        MatcherAssert.assertThat( result[0].city, CoreMatchers.equalTo(KENYA))
 
 
     }
 
-/*
     @Test
-    fun `delete database successfully`(){
+    fun `delete database successfully`()= runBlockingTest {
 
 
-    }*/
+        //insert into database give a localDataSourceInstance
+        defaultDataSource.saveWeatherReports(getFakeEntityData())
+
+        //When the Db data deleted
+         defaultDataSource.deleteAllWeatherReport()
+
+        //Clear all data in the database
+        val result:List<WeatherEntity> = defaultDataSource.getWeatherReports().first()
+
+        //Assert that the database is empty
+        MatcherAssert.assertThat( result.size, CoreMatchers.equalTo(0))
+    }
 
 
 
@@ -89,7 +100,7 @@ class DefaultLocalDataSourceTest{
     }
 
 
-    fun getFakeEntityData(): WeatherEntity {
+    private fun getFakeEntityData(): WeatherEntity {
 
         return WeatherEntity(
             id = 1,

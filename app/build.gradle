@@ -133,8 +133,9 @@ android {
         testImplementation "com.google.truth:truth:0.42"
         testImplementation "com.squareup.okhttp3:mockwebserver:4.6.0"
         testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.0"
+        testImplementation 'org.robolectric:robolectric:4.3.1'
 
-        
+
         // Used across all test
         implementation 'androidx.test:runner:1.4.0'
 
