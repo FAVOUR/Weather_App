@@ -1,9 +1,8 @@
-//package com.example.weatherapp
+//package com.example.weatherapp.di
 //
 //import android.app.Application
 //import android.content.Context
 //import androidx.test.runner.AndroidJUnitRunner
-//import com.example.weatherapp.di.WeatherTestApp
 //
 //
 ///**

@@ -145,7 +145,7 @@ android {
         androidTestImplementation 'androidx.test.ext:junit:1.1.1'
 //        androidTestImplementation 'junit:junit:4.13'
 //        androidTestImplementation 'androidx.test:runner:1.4.0'
-        androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+        androidTestImplementation 'androidx.test.espresso:espreso-core:3.2.0'
         androidTestImplementation "com.squareup.okhttp3:mockwebserver:4.6.0"
         kaptAndroidTest "com.google.dagger:dagger-compiler:$dagger_version"
 
@@ -154,22 +154,11 @@ android {
         androidTestImplementation 'androidx.test:runner:1.4.0'
         androidTestImplementation 'androidx.test:rules:1.4.0'
 
-
-        implementation 'androidx.test.ext:junit-ktx:1.1.3'
+//
+//        implementation 'androidx.test.ext:junit-ktx:1.1.3'
 
 
     }
 
 
 }
-//
-//dependencies {
-//
-//}
-
-
-//android.applicationVariants.all {
-//    def aptOutputDir = new File(buildDir, "generated/source/apt/${it.unitTestVariant.dirName}")
-//    it.unitTestVariant.addJavaSourceFoldersToModel(aptOutputDir)
-//}
-

@@ -1,21 +1,18 @@
-package com.example.weatherapp.data.source.local
+package com.example.weatherapp.data.source.local.dao
 
 import android.content.Context
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
-import androidx.test.ext.junit.runners.AndroidJUnit4
-import androidx.test.filters.LargeTest
 import androidx.test.filters.MediumTest
-import androidx.test.filters.SmallTest
 import com.example.weatherapp.BuildConfig
 import com.example.weatherapp.KENYA
+import com.example.weatherapp.data.source.local.DefaultLocalDataSource
 import com.example.weatherapp.data.source.local.dao.WeatherDao
 import com.example.weatherapp.data.source.local.db.WeatherDatabase
 import com.example.weatherapp.data.source.local.entity.WeatherEntity
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.runBlockingTest
 import org.hamcrest.CoreMatchers
 import org.hamcrest.MatcherAssert
@@ -28,12 +25,15 @@ import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 
 
+
+
+//@RunWith(AndroidJUnit4::class)
 @RunWith(RobolectricTestRunner::class)
 @MediumTest
 class DefaultLocalDataSourceTest{
 
     private lateinit var weatherDatabase:WeatherDatabase
-    private lateinit var defaultDataSource:DefaultLocalDataSource
+    private lateinit var defaultDataSource: DefaultLocalDataSource
 
     @get:Rule
     val rule = InstantTaskExecutorRule()
@@ -85,7 +85,7 @@ class DefaultLocalDataSourceTest{
         //When the Db data deleted
          defaultDataSource.deleteAllWeatherReport()
 
-        //Clear all data in the database
+        //delete the database
         val result:List<WeatherEntity> = defaultDataSource.getWeatherReports().first()
 
         //Assert that the database is empty
@@ -100,7 +100,7 @@ class DefaultLocalDataSourceTest{
     }
 
 
-    private fun getFakeEntityData(): WeatherEntity {
+    fun getFakeEntityData(): WeatherEntity {
 
         return WeatherEntity(
             id = 1,
