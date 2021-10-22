@@ -8,7 +8,6 @@ import androidx.test.filters.MediumTest
 import com.example.weatherapp.BuildConfig
 import com.example.weatherapp.KENYA
 import com.example.weatherapp.data.source.local.DefaultLocalDataSource
-import com.example.weatherapp.data.source.local.dao.WeatherDao
 import com.example.weatherapp.data.source.local.db.WeatherDatabase
 import com.example.weatherapp.data.source.local.entity.WeatherEntity
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -17,7 +16,6 @@ import kotlinx.coroutines.test.runBlockingTest
 import org.hamcrest.CoreMatchers
 import org.hamcrest.MatcherAssert
 import org.junit.After
-import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -62,6 +60,7 @@ class DefaultLocalDataSourceTest{
     @ExperimentalCoroutinesApi
     @Test
     fun `the right entity data stores successfully`()= runBlockingTest{
+//    fun `the`()= runBlockingTest{
 
         //insert into database give a localDataSourceInstance
         defaultDataSource.saveWeatherReports(getFakeEntityData())
@@ -76,6 +75,7 @@ class DefaultLocalDataSourceTest{
     }
 
     @Test
+//    fun `delete`()= runBlockingTest {
     fun `delete database successfully`()= runBlockingTest {
 
 
